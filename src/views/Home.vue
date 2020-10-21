@@ -1,18 +1,39 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <div class="home">
+        <div class="wrapper">
+            <div v-for='category in categories' @click='goToCategory(category.id)'>
+                {{ category.name }}
+                <img :src="category.image" :alt="category.name">
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import axios from 'axios'
+import router from '../router'
 
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
+    data(){
+        return {
+            categories: null
+        }
+    },
+    methods: {
+        async getCategories(){
+            let response = await axios.get('http://localhost:3000/categories')
+            this.categories = response.data
+            console.log(response)
+        },
+        goToCategory(categoryId){
+            router.push({ name: 'Category', params: { categoryId: categoryId } })
+        }
+    },
+    mounted(){
+        this.getCategories()
+    }
 }
 </script>
+
+<style lang="css" scoped>
+</style>
