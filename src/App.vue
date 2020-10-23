@@ -1,8 +1,21 @@
 <template>
     <div id="app">
-        <router-view/>
+        <Navigation></Navigation>
+        <div class="wrapper">
+            <router-view/>
+        </div>
     </div>
 </template>
+
+<script>
+    import Navigation from './components/Navigation.vue'
+
+    export default {
+        components: {
+            Navigation
+        }
+    }
+</script>
 
 <style>
 *, *:after, *:before {
@@ -12,6 +25,9 @@
     box-sizing: border-box;
     text-decoration: none;
     list-style-type: none;
+}
+body {
+    font-family: 'Roboto', sans-serif;
 }
 .responsive-image {
     width: 100%;

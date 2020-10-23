@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Categories from '../views/Categories.vue'
 import Category from '../views/Category.vue'
+import Cart from '../views/Cart.vue'
 
 Vue.use(VueRouter)
 
@@ -12,9 +14,19 @@ const routes = [
         component: Home
     },
     {
+        path: '/categories',
+        name: 'Categories',
+        component: Categories
+    },
+    {
         path: '/category/:categoryId',
         name: 'Category',
         component: Category
+    },
+    {
+        path: '/cart',
+        name: 'Cart',
+        component: Cart
     }
 ]
 
