@@ -10,7 +10,7 @@
             <p>{{ part.manufacturer }}</p>
         </div>
         <div class="">
-            <p>{{ part.serial_number }}</p>
+            <p>{{ part.serialNumber }}</p>
         </div>
         <div class="">
             <p>{{ part.description }}</p>

@@ -14,7 +14,7 @@
     export default {
         computed: {
             cartItemsCount(){
-                return this.$store.state.storeCart.length
+                return this.$store.state.cart.length
             }
         }
     }
