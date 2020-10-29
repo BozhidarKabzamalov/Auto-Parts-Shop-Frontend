@@ -17,16 +17,24 @@ export default {
     },
     data(){
         return {
-            categoryId: this.$route.params.categoryId,
+            model: this.$route.query.model,
+            categoryId: this.$route.query.categoryId,
             currentPage: 1,
             parts: null,
+            partsTest: null,
             totalItems: null,
             totalPages: null,
         }
     },
     methods: {
-        async getCategoryItems(){
+        async getPartsByCategory(){
             let response = await axios.get('http://localhost:3000/parts/' + this.categoryId + '?page=' + this.currentPage)
+            this.totalItems = response.data.totalItems
+            this.totalPages = response.data.totalPages
+            this.parts = response.data.parts
+        },
+        async getPartsByModelAndCategory(){
+            let response = await axios.get('http://localhost:3000/parts/' + this.model + '/' + this.categoryId + '?page=' + this.currentPage)
             this.totalItems = response.data.totalItems
             this.totalPages = response.data.totalPages
             this.parts = response.data.parts
@@ -34,11 +42,19 @@ export default {
     },
     watch: {
         currentPage: function(){
-            this.getCategoryItems()
+            if (this.model === undefined) {
+                this.getPartsByCategory()
+            } else {
+                this.getPartsByModelAndCategory()
+            }
         }
     },
     mounted(){
-        this.getCategoryItems()
+        if (this.model === undefined) {
+            this.getPartsByCategory()
+        } else {
+            this.getPartsByModelAndCategory()
+        }
     }
 }
 </script>

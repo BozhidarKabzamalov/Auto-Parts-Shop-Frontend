@@ -4,29 +4,35 @@ import Home from '../views/Home.vue'
 import Categories from '../views/Categories.vue'
 import Category from '../views/Category.vue'
 import Cart from '../views/Cart.vue'
+import Login from '../views/Login.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
     {
         path: '/',
-        name: 'Home',
+        name: 'home',
         component: Home
     },
     {
         path: '/categories',
-        name: 'Categories',
+        name: 'categories',
         component: Categories
     },
     {
-        path: '/category/:categoryId',
-        name: 'Category',
+        path: '/category',
+        name: 'category',
         component: Category
     },
     {
         path: '/cart',
-        name: 'Cart',
+        name: 'cart',
         component: Cart
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: Login
     }
 ]
 

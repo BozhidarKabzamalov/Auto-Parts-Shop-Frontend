@@ -1,8 +1,8 @@
 <template>
-    <div class="home">
-        <div v-for='category in categories' @click='goToCategory(category.id)'>
-            {{ category.name }}
+    <div class="categories">
+        <div class='category' v-for='category in categories' @click='goToCategory(category)'>
             <img :src="category.image" :alt="category.name">
+            <p>{{ category.name }}</p>
         </div>
     </div>
 </template>
@@ -14,7 +14,9 @@ import router from '../router'
 export default {
     data(){
         return {
-            categories: null
+            categories: null,
+            brand: this.$route.query.brand,
+            model: this.$route.query.model
         }
     },
     methods: {
@@ -22,8 +24,8 @@ export default {
             let response = await axios.get('http://localhost:3000/categories')
             this.categories = response.data
         },
-        goToCategory(categoryId){
-            router.push({ name: 'Category', params: { categoryId: categoryId } })
+        goToCategory(category){
+            router.push({ name: 'category', query: { brand: this.brand, model: this.model, categoryId: category.id } })
         }
     },
     mounted(){
@@ -33,4 +35,15 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.categories {
+    display: flex;
+}
+.category {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 40px;
+    cursor: pointer;
+}
 </style>
