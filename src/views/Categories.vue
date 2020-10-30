@@ -1,8 +1,10 @@
 <template>
     <div class="categories">
         <div class='category' v-for='category in categories' @click='goToCategory(category)'>
-            <img :src="category.image" :alt="category.name">
-            <p>{{ category.name }}</p>
+            <div class="category-image">
+                <img class='responsive-image' :src="category.image" :alt="category.name">
+            </div>
+            <p class='category-name'>{{ category.name }}</p>
         </div>
     </div>
 </template>
@@ -36,14 +38,30 @@ export default {
 
 <style lang="css" scoped>
 .categories {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 200px);
+    width: 100%;
+    padding-top: 20px;
+    justify-content: space-evenly;
+    align-content: flex-start;
 }
 .category {
+    width: 200px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content:space-between;
     align-items: center;
-    margin-right: 40px;
     cursor: pointer;
+    transition: all .2s ease-in-out;
+    padding: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+}
+.category-image img {
+    display: block;
+}
+.category-name {
+    text-align: center;
+    margin: 20px 0 10px 0;
 }
 </style>

@@ -22,7 +22,7 @@ const authentication = {
     actions: {
         async login({commit, dispatch}, userInfo){
             try {
-                let response = await axios.post('/login', userInfo)
+                let response = await axios.post('http://localhost:3000/login', userInfo)
 
                 if (response.status == 401) {
                     console.log('Error')
