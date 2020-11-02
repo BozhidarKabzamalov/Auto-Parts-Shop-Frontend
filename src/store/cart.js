@@ -14,8 +14,9 @@ const cart = {
             })
 
             if (productInCart) {
-                productInCart.quantity += part.quantity
+                Vue.set(productInCart, 'quantity', productInCart.quantity += 1);
             } else {
+                Vue.set(part, 'quantity', 1);
                 state.cart.push(part)
             }
         },
@@ -25,14 +26,22 @@ const cart = {
     },
     actions: {
         addCartItem(context, part) {
-            part.quantity = 1
             context.commit("ADD_CART_ITEM", part)
         },
         removeCartItem(context, part) {
             context.commit("REMOVE_CART_ITEM", index)
         }
     },
-    modules: {
+    getters: {
+        cartItemCount: state => {
+            let itemCount = 0
+
+            state.cart.forEach(item => {
+                itemCount += item.quantity
+            });
+
+            return itemCount
+        }
     }
 }
 

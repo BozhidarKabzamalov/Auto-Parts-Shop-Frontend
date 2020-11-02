@@ -1,19 +1,24 @@
 <template lang="html">
     <div class="search-by-brand">
-        <div class="test">
-            <select v-model="selectedBrand">
-                <option disabled value="">Марка</option>
-                <option v-for='brand in brands' :value='brand'>{{ brand.name }}</option>
-            </select>
-            <select v-model="selectedYear">
-                <option disabled value="">Година</option>
-                <option v-for='year in years'>{{ year }}</option>
-            </select>
+        <div class="search-header">
+            <p>Търсене по автомобил</p>
+        </div>
+        <div class="search-body">
+            <div class="brand-year">
+                <select class='brand' v-model="selectedBrand">
+                    <option disabled value="">Марка</option>
+                    <option v-for='brand in brands' :value='brand'>{{ brand.name }}</option>
+                </select>
+                <select class='year' v-model="selectedYear">
+                    <option disabled value="">Година</option>
+                    <option v-for='year in years'>{{ year }}</option>
+                </select>
+            </div>
             <select v-model="selectedModel">
                 <option disabled value="">Модел</option>
                 <option v-for='model in models' :value='model'>{{ model.name }}</option>
             </select>
-            <div class="search" @click='search()'>Click me</div>
+            <div class="search" @click='search()'>Търси</div>
         </div>
     </div>
 </template>
@@ -79,15 +84,45 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.search-by-brand {
-    padding-top: 20px;
-    width: 500px;
+.search-header, .search-body {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 20px;
 }
-.test {
+.search-header {
+    text-align: center;
+    margin-bottom: 10px;
+}
+.search-body {
     display: flex;
     flex-direction: column;
+    width: 250px;
 }
-.test select {
+.search-body select {
     margin-bottom: 20px;
+}
+.brand-year {
+    display: flex;
+}
+.brand {
+    flex: 2;
+    margin-right: 10px;
+}
+.year {
+    flex: 1
+}
+.search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    color: #ffffff;
+    padding: 10px 0;
+    background-color: #7289da;
+    cursor: pointer;
+}
+.search:hover {
+    background-color: #677bc4;
 }
 </style>

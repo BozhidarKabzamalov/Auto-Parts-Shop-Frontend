@@ -28,6 +28,7 @@
 }
 body {
     font-family: 'Roboto', sans-serif;
+    background-color: #f3f3f3;
 }
 .responsive-image {
     width: 100%;

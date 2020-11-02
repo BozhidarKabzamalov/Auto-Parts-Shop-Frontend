@@ -1,8 +1,8 @@
 <template>
     <div class="categories">
         <div class='category' v-for='category in categories' @click='goToCategory(category)'>
-            <div class="category-image">
-                <img class='responsive-image' :src="category.image" :alt="category.name">
+            <div class="category-image-wrapper">
+                <img class='category-image' :src="category.image" :alt="category.name">
             </div>
             <p class='category-name'>{{ category.name }}</p>
         </div>
@@ -39,29 +39,44 @@ export default {
 <style lang="css" scoped>
 .categories {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 200px);
+    grid-template-columns: repeat(auto-fill, 240px);
     width: 100%;
+    column-gap: 20px;
     padding-top: 20px;
-    justify-content: space-evenly;
-    align-content: flex-start;
+    justify-content: center;
 }
 .category {
-    width: 200px;
+    background-color: #ffffff;
+    width: 240px;
     display: flex;
     flex-direction: column;
-    justify-content:space-between;
+    justify-content: flex-start;
     align-items: center;
     cursor: pointer;
-    transition: all .2s ease-in-out;
-    padding: 10px;
-    border: 2px solid rgba(0, 0, 0, 0.5);
+    padding: 20px;
     margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #dee2e6;
+    transition: all .2s ease-in-out;
 }
-.category-image img {
+.category:hover {
+    border-color: #aaa;
+}
+.category-image-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+}
+.category-image {
+    max-height: 100%;
+    max-width: 100%;
     display: block;
 }
 .category-name {
     text-align: center;
+    word-break: break-all;
     margin: 20px 0 10px 0;
 }
 </style>

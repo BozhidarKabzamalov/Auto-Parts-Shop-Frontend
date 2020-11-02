@@ -21,7 +21,6 @@ export default {
             categoryId: this.$route.query.categoryId,
             currentPage: 1,
             parts: null,
-            partsTest: null,
             totalItems: null,
             totalPages: null,
         }
@@ -62,20 +61,5 @@ export default {
 <style lang="css" scoped>
 .category {
     padding-top: 10px;
-}
-.part {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #dee2e6;
-}
-.part-image-container {
-    width: 100px;
-    height: auto;
-}
-.part-image {
-    display: block;
 }
 </style>

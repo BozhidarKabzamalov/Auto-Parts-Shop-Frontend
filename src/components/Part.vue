@@ -41,8 +41,11 @@ export default {
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     border: 1px solid #dee2e6;
+}
+.part:last-child {
+    margin-bottom: 0px;
 }
 .part-image-container {
     width: 100px;
