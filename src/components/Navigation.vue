@@ -4,6 +4,11 @@
             <ul class='nav-ul'>
                 <router-link to="/" tag='li'>Начало</router-link>
                 <router-link to="/categories" tag='li'>Категории</router-link>
+                <!--<router-link to="/cart" tag='li'>Контакти</router-link>
+                <router-link to="/cart" tag='li'>За нас</router-link>
+                <router-link to="/cart" tag='li'>Доставка</router-link>
+                <router-link to="/cart" tag='li'>Общи условия</router-link>
+                <router-link to="/cart" tag='li'>Поверителност</router-link>-->
                 <router-link to="/cart" tag='li'>Количка ({{ cartItemsCount }})</router-link>
             </ul>
         </div>
@@ -22,7 +27,7 @@
 
 <style scoped>
     .nav {
-        background-color: #252934;
+        background-color: #23282b;
     }
     .nav-ul {
         display: flex;

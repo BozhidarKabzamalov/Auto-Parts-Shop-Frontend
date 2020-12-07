@@ -5,6 +5,7 @@ import Categories from '../views/Categories.vue'
 import Category from '../views/Category.vue'
 import Cart from '../views/Cart.vue'
 import Login from '../views/Login.vue'
+import AdminPanel from '../views/AdminPanel.vue'
 
 Vue.use(VueRouter)
 
@@ -33,6 +34,11 @@ const routes = [
         path: '/login',
         name: 'login',
         component: Login
+    },
+    {
+        path: '/admin',
+        name: 'admin',
+        component: AdminPanel
     }
 ]
 

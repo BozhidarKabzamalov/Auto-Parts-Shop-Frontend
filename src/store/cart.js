@@ -3,33 +3,40 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+let cartExists = localStorage.getItem('cart')
+
 const cart = {
     state: {
-        cart: []
+        cart: cartExists ? JSON.parse(cartExists) : []
     },
     mutations: {
-        ADD_CART_ITEM(state, part) {
+        ADD_CART_ITEM(state, product) {
             let productInCart = state.cart.find(item => {
-                return item.id === part.id
+                return item.id === product.id
             })
 
             if (productInCart) {
                 Vue.set(productInCart, 'quantity', productInCart.quantity += 1);
             } else {
-                Vue.set(part, 'quantity', 1);
-                state.cart.push(part)
+                Vue.set(product, 'quantity', 1);
+                state.cart.push(product)
             }
         },
-        REMOTE_CART_ITEM(state, part) {
+        REMOTE_CART_ITEM(state, product) {
             state.cart.splice(index, 1)
         },
     },
     actions: {
-        addCartItem(context, part) {
-            context.commit("ADD_CART_ITEM", part)
+        addCartItem(context, product) {
+            context.commit("ADD_CART_ITEM", product)
+            context.dispatch("saveCartToLocalStorage")
         },
-        removeCartItem(context, part) {
-            context.commit("REMOVE_CART_ITEM", index)
+        removeCartItem(context, product) {
+            context.commit("REMOVE_CART_ITEM", product)
+            context.dispatch("saveCartToLocalStorage")
+        },
+        saveCartToLocalStorage(context){
+            localStorage.setItem('cart', JSON.stringify(context.state.cart))
         }
     },
     getters: {
@@ -41,6 +48,15 @@ const cart = {
             });
 
             return itemCount
+        },
+        cartTotalPrice: state => {
+            let price = 0
+
+            state.cart.forEach(item => {
+                price += item.quantity * item.price
+            });
+
+            return price
         }
     }
 }

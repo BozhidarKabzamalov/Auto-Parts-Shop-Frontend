@@ -1,58 +1,60 @@
 <template lang="html">
     <div class="category">
-        <div class="parts">
-            <Part v-for='part in parts' :part='part'></Part>
+        <div class="products-container">
+            <div class="products">
+                <Product v-for='product in products' :product='product'></Product>
+            </div>
+            <div v-for='page in totalPages' @click='currentPage = page'>{{ page }}</div>
         </div>
-        <div v-for='page in totalPages' @click='currentPage = page'>{{ page }}</div>
     </div>
 </template>
 
 <script>
 import axios from 'axios'
-import Part from '../components/Part.vue'
+import Product from '../components/Product.vue'
 
 export default {
     components: {
-        Part
+        Product
     },
     data(){
         return {
             model: this.$route.query.model,
             categoryId: this.$route.query.categoryId,
             currentPage: 1,
-            parts: null,
+            products: null,
             totalItems: null,
             totalPages: null,
         }
     },
     methods: {
-        async getPartsByCategory(){
+        async getProductsByCategory(){
             let response = await axios.get('http://localhost:3000/parts/' + this.categoryId + '?page=' + this.currentPage)
             this.totalItems = response.data.totalItems
             this.totalPages = response.data.totalPages
-            this.parts = response.data.parts
+            this.products = response.data.parts
         },
-        async getPartsByModelAndCategory(){
+        async getProductsByModelAndCategory(){
             let response = await axios.get('http://localhost:3000/parts/' + this.model + '/' + this.categoryId + '?page=' + this.currentPage)
             this.totalItems = response.data.totalItems
             this.totalPages = response.data.totalPages
-            this.parts = response.data.parts
+            this.products = response.data.parts
         }
     },
     watch: {
         currentPage: function(){
             if (this.model === undefined) {
-                this.getPartsByCategory()
+                this.getProductsByCategory()
             } else {
-                this.getPartsByModelAndCategory()
+                this.getProductsByModelAndCategory()
             }
         }
     },
     mounted(){
         if (this.model === undefined) {
-            this.getPartsByCategory()
+            this.getProductsByCategory()
         } else {
-            this.getPartsByModelAndCategory()
+            this.getProductsByModelAndCategory()
         }
     }
 }
@@ -60,6 +62,11 @@ export default {
 
 <style lang="css" scoped>
 .category {
-    padding-top: 10px;
+    padding-top: 20px;
+}
+.products-container {
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
 }
 </style>

@@ -75,8 +75,9 @@ export default {
     display: block;
 }
 .category-name {
+    font-size: 14px;
     text-align: center;
     word-break: break-all;
-    margin: 20px 0 10px 0;
+    margin: 20px 0 0 0;
 }
 </style>

@@ -1,8 +1,6 @@
 <template lang="html">
     <div class="search-by-brand">
-        <div class="search-header">
-            <p>Търсене по автомобил</p>
-        </div>
+        <p class="column-title">Търсене по автомобил</p>
         <div class="search-body">
             <div class="brand-year">
                 <select class='brand' v-model="selectedBrand">
@@ -84,20 +82,11 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.search-header, .search-body {
-    background-color: #ffffff;
-    border: 1px solid #dee2e6;
-    border-radius: 5px;
-    padding: 20px;
-}
-.search-header {
-    text-align: center;
-    margin-bottom: 10px;
-}
 .search-body {
     display: flex;
     flex-direction: column;
     width: 250px;
+    padding: 20px;
 }
 .search-body select {
     margin-bottom: 20px;
@@ -119,10 +108,16 @@ export default {
     width: 100%;
     color: #ffffff;
     padding: 10px 0;
-    background-color: #7289da;
+    background-color: #46b05a;
     cursor: pointer;
 }
 .search:hover {
-    background-color: #677bc4;
+    background-color: #3da34d;
+}
+
+@media (max-width: 500px) {
+    .search-body {
+        width: 100%;
+    }
 }
 </style>

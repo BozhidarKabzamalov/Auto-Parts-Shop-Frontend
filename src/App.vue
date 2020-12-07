@@ -28,7 +28,10 @@
 }
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #f3f3f3;
+    background-color: #ffffff;
+}
+.flex {
+    display: flex;
 }
 .responsive-image {
     width: 100%;
@@ -37,5 +40,17 @@ body {
 .wrapper {
     width: 70%;
     margin: 0 auto;
+}
+.column-title {
+    padding: 20px 0;
+    line-height: 35px;
+    border-bottom: 1px solid #9a9a9a;
+    font-size: 18px;
+}
+
+@media (max-width: 500px) {
+    .wrapper {
+        width: 90%;
+    }
 }
 </style>
