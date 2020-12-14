@@ -1,18 +1,21 @@
 <template>
     <div id="app">
-        <Navigation></Navigation>
+        <Header></Header>
         <div class="wrapper">
             <router-view/>
         </div>
+        <!--<Footer></Footer>-->
     </div>
 </template>
 
 <script>
-    import Navigation from './components/Navigation.vue'
+    import Header from './components/Header.vue'
+    import Footer from './components/Footer.vue'
 
     export default {
         components: {
-            Navigation
+            Header,
+            Footer
         }
     }
 </script>
@@ -29,6 +32,7 @@
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #ffffff;
+    color: #333;
 }
 .flex {
     display: flex;

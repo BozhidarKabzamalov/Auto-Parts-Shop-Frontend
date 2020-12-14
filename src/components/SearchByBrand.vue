@@ -90,6 +90,12 @@ export default {
 }
 .search-body select {
     margin-bottom: 20px;
+    padding: 4px;
+    min-width: 88px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    height: 38px;
+    background-color: #ffffff;
 }
 .brand-year {
     display: flex;

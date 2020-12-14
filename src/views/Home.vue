@@ -94,5 +94,4 @@ export default {
         margin-left: 0px;
     }
 }
-
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div class="nav">
+    <div class="header">
         <div class='wrapper'>
             <ul class='nav-ul'>
                 <router-link to="/" tag='li'>Начало</router-link>
@@ -26,13 +26,13 @@
 </script>
 
 <style scoped>
-    .nav {
+    .header {
         background-color: #23282b;
     }
     .nav-ul {
         display: flex;
     }
-    .nav li {
+    .nav-ul li {
         padding: 16px 30px 16px 0;
         color: #ffffff;
         cursor: pointer;

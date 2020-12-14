@@ -7,6 +7,7 @@
         <p class="product-manufacturer">{{ product.manufacturer }}</p>
         <p class="product-serial-number">{{ product.serialNumber }}</p>
         <p class="product-price">{{ product.price }} лв</p>
+        <p @click='addToCart'>+</p>
     </div>
 </template>
 
@@ -30,6 +31,7 @@ export default {
     padding: 20px 0;
     border-bottom: 1px solid #eeeeee;
     cursor: pointer;
+    font-size: 15px;
 }
 .product-image-wrapper {
     display: flex;
@@ -62,11 +64,4 @@ export default {
         align-items: center;
     }
 }
-
-@media (max-width: 1380px) {
-    .product {
-        flex-direction: column
-    }
-}
-
 </style>
