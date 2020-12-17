@@ -1,6 +1,6 @@
 <template lang="html">
     <div class="search-by-brand">
-        <p class="column-title">Търсене по автомобил</p>
+        <h1 class="column-title">Търсене по автомобил</h1>
         <div class="search-body">
             <div class="brand-year">
                 <select class='brand' v-model="selectedBrand">
@@ -82,11 +82,12 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.search-by-brand {
+    width: 250px;
+}
 .search-body {
     display: flex;
     flex-direction: column;
-    width: 250px;
-    padding: 20px;
 }
 .search-body select {
     margin-bottom: 20px;
@@ -96,6 +97,10 @@ export default {
     cursor: pointer;
     height: 38px;
     background-color: #ffffff;
+    outline: none;
+}
+.search-body select:hover {
+    border: 1px solid #aaa;
 }
 .brand-year {
     display: flex;

@@ -10,29 +10,46 @@ const cart = {
         cart: cartExists ? JSON.parse(cartExists) : []
     },
     mutations: {
-        ADD_CART_ITEM(state, product) {
+        ADD_CART_ITEM(state, product){
             let productInCart = state.cart.find(item => {
                 return item.id === product.id
             })
 
-            if (productInCart) {
+            if (productInCart){
                 Vue.set(productInCart, 'quantity', productInCart.quantity += 1);
             } else {
                 Vue.set(product, 'quantity', 1);
                 state.cart.push(product)
             }
         },
-        REMOTE_CART_ITEM(state, product) {
-            state.cart.splice(index, 1)
+        REMOVE_CART_ITEM(state, product){
+            Vue.set(product, 'quantity', product.quantity -= 1);
+            if (product.quantity === 0){
+                let index = state.cart.indexOf(product)
+
+                state.cart.splice(index, 1)
+            }
         },
+        UPDATE_CART_ITEM(state, payload){
+            Vue.set(payload.product, 'quantity', payload.newQuantity);
+            if (payload.product.quantity === 0){
+                let index = state.cart.indexOf(product)
+
+                state.cart.splice(index, 1)
+            }
+        }
     },
     actions: {
-        addCartItem(context, product) {
+        addCartItem(context, product){
             context.commit("ADD_CART_ITEM", product)
             context.dispatch("saveCartToLocalStorage")
         },
-        removeCartItem(context, product) {
+        removeCartItem(context, product){
             context.commit("REMOVE_CART_ITEM", product)
+            context.dispatch("saveCartToLocalStorage")
+        },
+        updateCartItem(context, payload){
+            context.commit("UPDATE_CART_ITEM", payload)
             context.dispatch("saveCartToLocalStorage")
         },
         saveCartToLocalStorage(context){

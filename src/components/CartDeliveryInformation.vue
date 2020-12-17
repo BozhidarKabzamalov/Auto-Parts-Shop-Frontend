@@ -64,9 +64,6 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.delivery-information {
-    padding-top: 20px;
-}
 .row {
     display: flex;
 }
@@ -79,16 +76,13 @@ export default {
 .column:last-child {
     margin-left: 15px;
 }
-.column-title {
-    margin-bottom: 30px;
-    font-size: 20px;
-    font-weight: 700;
-    text-transform: uppercase;
-}
 .input-container {
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
+}
+.input-container:first-child {
+    margin-top: 20px;
 }
 .input-container label {
     font-size: 14px;
@@ -99,7 +93,6 @@ export default {
     outline: none;
     background-color: #fff;
     width: 100%;
-    max-width: 380px;
     box-shadow: none;
     padding: 10px;
     border-radius: 0;
@@ -113,8 +106,7 @@ export default {
     color: #3e3e3e;
 }
 .buttons-container {
-    margin-top: 20px;
-    padding-top: 40px;
+    padding-top: 20px;
     border-top: 1px solid #9a9a9a;
     display: flex;
     justify-content: space-between;
@@ -145,5 +137,25 @@ export default {
 }
 .previous-step i {
     margin-right: 10px;
+}
+
+@media (max-width: 860px) {
+    .row {
+        flex-direction: column;
+    }
+    .column:first-child {
+        margin-right: 0;
+    }
+    .column:last-child {
+        margin-left: 0;
+    }
+    .buttons-container {
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    .previous-step {
+        margin-bottom: 20px;
+    }
 }
 </style>

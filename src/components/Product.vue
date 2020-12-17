@@ -1,13 +1,12 @@
 <template lang="html">
     <div class='product'>
-        <div class="product-image-wrapper">
+        <div class="product-image-container">
             <img class='product-image' :src="product.image" :alt="product.name">
         </div>
         <p class="product-name">{{ product.name }}</p>
         <p class="product-manufacturer">{{ product.manufacturer }}</p>
         <p class="product-serial-number">{{ product.serialNumber }}</p>
         <p class="product-price">{{ product.price }} лв</p>
-        <p @click='addToCart'>+</p>
     </div>
 </template>
 
@@ -29,17 +28,17 @@ export default {
     align-items: center;
     width: 100%;
     padding: 20px 0;
-    border-bottom: 1px solid #eeeeee;
+    border-bottom: 1px solid #dddddd;
     cursor: pointer;
     font-size: 15px;
 }
-.product-image-wrapper {
+.product-image-container {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100px;
     height: 100px;
-    margin-right: 10px;
+    margin-right: 15px;
 }
 .product-image {
     display: block;
@@ -48,20 +47,43 @@ export default {
 }
 .product-name {
     width: 200px;
-    margin-right: 10px;
+    margin-right: 15px;
 }
 .product-manufacturer, .product-serial-number {
     width: 120px;
-    margin-right: 10px;
+    margin-right: 15px;
 }
 .product-price {
     width: 80px;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 1080px) {
+    .product-serial-number {
+        display: none;
+    }
+}
+
+@media (max-width: 860px) {
     .product {
         flex-direction: column;
-        align-items: center;
+    }
+    .product-image-container {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+    .product-name {
+        margin-right: 0;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+    .product-manufacturer {
+        display: block;
+        margin-right: 0;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+    .product-price {
+        text-align: center;
     }
 }
 </style>

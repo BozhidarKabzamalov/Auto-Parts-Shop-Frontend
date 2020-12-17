@@ -4,7 +4,7 @@
             <SearchByBrand></SearchByBrand>
         </div>
         <div class="column">
-            <p class="column-title">Нови продукти</p>
+            <h1 class="column-title products-title">Нови продукти</h1>
             <div class="product-information">
                 <p class="product-image"></p>
                 <p class="product-name">Име</p>
@@ -44,6 +44,7 @@ export default {
         }
     },
     mounted(){
+        document.title = 'Home'
         this.getProducts()
     }
 }
@@ -65,7 +66,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding: 20px 0;
+    padding-bottom: 20px;
     border-bottom: 1px solid #dddddd;
 }
 .product-image {
@@ -85,13 +86,30 @@ export default {
     width: 80px;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 1450px) {
     .home {
         flex-direction: column;
     }
+    .column:first-child {
+        margin-right: 0;
+    }
     .column:last-child {
-        flex: 1;
-        margin-left: 0px;
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 1080px) {
+    .product-serial-number {
+        display: none;
+    }
+}
+
+@media (max-width: 860px) {
+    .product-information {
+        display: none;
+    }
+    .products-title {
+        margin-bottom: 0;
     }
 }
 </style>
