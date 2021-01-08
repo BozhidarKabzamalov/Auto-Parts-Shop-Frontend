@@ -5,38 +5,38 @@
                 <h1 class="column-title">Лични данни</h1>
                 <div class="input-container">
                     <label>Име:</label>
-                    <input type="text" name="firstName" value="">
+                    <input type="text" name="firstName" v-model="deliveryInformation.firstName">
                 </div>
                 <div class="input-container">
                     <label>Фамилия:</label>
-                    <input type="text" name="lastName" value="">
+                    <input type="text" name="lastName" v-model="deliveryInformation.lastName">
                 </div>
                 <div class="input-container">
                     <label>Телефон:</label>
-                    <input type="number" name="phoneNumber" value="">
+                    <input type="number" name="phoneNumber" v-model="deliveryInformation.phoneNumber">
                 </div>
                 <div class="input-container">
                     <label>E-mail:</label>
-                    <input type="email" name="email" value="">
+                    <input type="email" name="email" v-model="deliveryInformation.email">
                 </div>
             </div>
             <div class="column">
                 <h1 class="column-title">Адрес за доставка</h1>
                 <div class="input-container">
                     <label>Населено място:</label>
-                    <input type="text" name="city" value="">
+                    <input type="text" name="city" v-model="deliveryInformation.city">
                 </div>
                 <div class="input-container">
                     <label>Пощенски код:</label>
-                    <input type="number" name="zip" value="">
+                    <input type="number" name="zip" v-model="deliveryInformation.zipCode">
                 </div>
                 <div class="input-container">
                     <label>Адрес</label>
-                    <input type="text" name="streetAddress" value="" placeholder="Или адрес на офис на Еконт/Speedy">
+                    <input type="text" name="streetAddress" v-model="deliveryInformation.streetAddress" placeholder="Или адрес на офис на Еконт/Speedy">
                 </div>
                 <div class="input-container">
                     <label>Допълнителна информация:</label>
-                    <input type="text" name="extraNotes" value="">
+                    <input type="text" name="extraNotes" v-model="deliveryInformation.extraNotes">
                 </div>
             </div>
         </div>
@@ -45,7 +45,7 @@
                 <i class="fas fa-chevron-left"></i>
                 <p>Продукти</p>
             </div>
-            <div class="next-step" @click="setSelectedStep(3)">
+            <div class="next-step" @click="finishOrder">
                 <p>Завърши поръчка</p>
                 <i class="fas fa-chevron-right"></i>
             </div>
@@ -54,10 +54,44 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
+    data(){
+        return {
+            deliveryInformation: {
+                firstName: null,
+                lastName: null,
+                phoneNumber: null,
+                email: null,
+                city: null,
+                zipCode: null,
+                streetAddress: null,
+                extraNotes: null
+            }
+        }
+    },
     methods: {
+        async finishOrder(){
+            let orderInformation = {
+                items: this.cart,
+                deliveryInformation: this.deliveryInformation
+            }
+
+            try {
+                let response = await axios.post('http://localhost:3000/createOrder', orderInformation)
+                this.setSelectedStep(3)
+            } catch (error) {
+                console.log(error)
+            }
+        },
         setSelectedStep(stepNumber){
             this.$emit('setSelectedStep', stepNumber);
+        }
+    },
+    computed: {
+        cart(){
+            return this.$store.state.cart.cart
         }
     }
 }

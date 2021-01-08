@@ -4,6 +4,7 @@
             <ul class='nav-ul'>
                 <router-link to="/" tag='li'>Начало</router-link>
                 <router-link to="/categories" tag='li'>Категории</router-link>
+                <router-link to="/admin" tag='li'>Admin</router-link>
                 <!--<router-link to="/cart" tag='li'>Контакти</router-link>
                 <router-link to="/cart" tag='li'>За нас</router-link>
                 <router-link to="/cart" tag='li'>Доставка</router-link>
@@ -27,7 +28,7 @@
 
 <style scoped>
     .header {
-        background-color: #23282b;
+        background-color: #24292e;
     }
     .nav-ul {
         display: flex;
@@ -36,5 +37,7 @@
         padding: 16px 30px 16px 0;
         color: #ffffff;
         cursor: pointer;
+        font-weight: 500;
+        font-size: 15px;
     }
 </style>

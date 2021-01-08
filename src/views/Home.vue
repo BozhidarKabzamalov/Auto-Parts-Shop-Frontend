@@ -13,6 +13,7 @@
                 <p class="product-price">Цена</p>
             </div>
             <Product v-for='product in products' :product='product'></Product>
+            <Pagination :currentPage="currentPage" :totalPages="totalPages" @setCurrentPage="setCurrentPage"></Pagination>
         </div>
     </div>
 </template>
@@ -21,14 +22,18 @@
 import axios from 'axios'
 import SearchByBrand from '../components/SearchByBrand'
 import Product from '../components/Product'
+import Pagination from '../components/Pagination'
 
 export default {
     components: {
         Product,
-        SearchByBrand
+        SearchByBrand,
+        Pagination
     },
     data(){
         return {
+            model: this.$route.query.model,
+            categoryId: this.$route.query.categoryId,
             currentPage: 1,
             products: null,
             totalItems: null,
@@ -37,14 +42,32 @@ export default {
     },
     methods: {
         async getProducts(){
-            let response = await axios.get('http://localhost:3000/parts?page=' + this.currentPage)
+            if (this.model === undefined && this.categoryId === undefined) {
+                var response = await axios.get('http://localhost:3000/parts?page=' + this.currentPage)
+            } else if (this.categoryId !== undefined && this.model === undefined) {
+                var response = await axios.get('http://localhost:3000/parts/' + this.categoryId + '?page=' + this.currentPage)
+            } else {
+                var response = await axios.get('http://localhost:3000/parts/' + this.model + '/' + this.categoryId + '?page=' + this.currentPage)
+            }
+            this.products = response.data.parts
             this.totalItems = response.data.totalItems
             this.totalPages = response.data.totalPages
-            this.products = response.data.parts
+        },
+        setCurrentPage(page){
+            this.currentPage = page
+        }
+    },
+    watch: {
+        $route (to, from){
+            this.categoryId = this.$route.query.model
+            this.model = this.$route.query.categoryId
+            this.getProducts()
+        },
+        currentPage(){
+            this.getProducts()
         }
     },
     mounted(){
-        document.title = 'Home'
         this.getProducts()
     }
 }

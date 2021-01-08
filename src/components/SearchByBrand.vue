@@ -127,6 +127,9 @@ export default {
 }
 
 @media (max-width: 500px) {
+    .search-by-brand {
+        width: 100%;
+    }
     .search-body {
         width: 100%;
     }

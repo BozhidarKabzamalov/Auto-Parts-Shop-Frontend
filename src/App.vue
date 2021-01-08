@@ -13,6 +13,10 @@
     import Footer from './components/Footer.vue'
 
     export default {
+        metaInfo: {
+          title: 'Default Title',
+          titleTemplate: '%s | My Awesome Webapp'
+        },
         components: {
             Header,
             Footer
@@ -32,6 +36,7 @@
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #ffffff;
+    background-color: #f7f7f7;
     color: #333;
 }
 .flex {

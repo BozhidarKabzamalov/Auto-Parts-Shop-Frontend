@@ -56,7 +56,7 @@ export default {
 }
 .login-container > p {
     text-align: center;
-    font-weight: 600;
+    font-weight: 700;
     color: #ffffff;
     font-size: 24px;
     line-height: 30px;
@@ -70,7 +70,7 @@ export default {
     margin-bottom: 10px;
     font-size: 12px;
     line-height: 16px;
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
 }
 input {
@@ -91,7 +91,6 @@ input:focus {
 }
 button {
     cursor: pointer;
-    font-weight: 500;
     color: #ffffff;
     background-color: #7289da;
     font-size: 16px;

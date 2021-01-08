@@ -3,12 +3,14 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import SpecificProduct from '../views/SpecificProduct.vue'
 import Categories from '../views/Categories.vue'
-import Category from '../views/Category.vue'
 import Cart from '../views/Cart.vue'
 import Login from '../views/Login.vue'
 import AdminPanel from '../views/AdminPanel.vue'
+import AdminOrders from '../components/AdminOrders.vue'
+import Meta from 'vue-meta'
 
 Vue.use(VueRouter)
+Vue.use(Meta)
 
 const routes = [
     {
@@ -27,11 +29,6 @@ const routes = [
         component: Categories
     },
     {
-        path: '/category',
-        name: 'category',
-        component: Category
-    },
-    {
         path: '/cart',
         name: 'cart',
         component: Cart
@@ -44,7 +41,13 @@ const routes = [
     {
         path: '/admin',
         name: 'admin',
-        component: AdminPanel
+        component: AdminPanel,
+        children: [
+            {
+                path: '',
+                component: AdminOrders
+            }
+        ]
     }
 ]
 

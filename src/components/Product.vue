@@ -7,6 +7,7 @@
         <p class="product-manufacturer">{{ product.manufacturer }}</p>
         <p class="product-serial-number">{{ product.serialNumber }}</p>
         <p class="product-price">{{ product.price }} лв</p>
+        <p @click="addToCart">+</p>
     </div>
 </template>
 

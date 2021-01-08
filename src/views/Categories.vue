@@ -27,7 +27,7 @@ export default {
             this.categories = response.data
         },
         goToCategory(category){
-            router.push({ name: 'category', query: { brand: this.brand, model: this.model, categoryId: category.id } })
+            router.push({ name: 'home', query: { brand: this.brand, model: this.model, categoryId: category.id } })
         }
     },
     mounted(){

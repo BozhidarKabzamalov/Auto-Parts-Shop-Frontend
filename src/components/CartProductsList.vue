@@ -1,25 +1,24 @@
 <template lang="html">
     <div class="delivery-products">
 
-        <div class="row" v-if='cartItemsCount == 0'>
-            <p>Вашата количка е празна.</p>
-        </div>
-
-        <div class="row" v-else>
+        <div class="row">
 
             <div class='column'>
                 <h1 class="column-title cart-products-title">Моята количка</h1>
-                <div class="product-information">
-                    <p class="product-image"></p>
-                    <p class="product-name">Име</p>
-                    <p class="product-manufacturer">Производител</p>
-                    <p class="product-quantity">Quantity</p>
-                    <p class="product-price">Цена</p>
+                <p v-if='cartItemsCount == 0'>Вашата количка е празна.</p>
+                <div v-else>
+                    <div class="product-information">
+                        <p class="product-image"></p>
+                        <p class="product-name">Име</p>
+                        <p class="product-manufacturer">Производител</p>
+                        <p class="product-quantity">Quantity</p>
+                        <p class="product-price">Цена</p>
+                    </div>
+                    <CartProduct v-for="product in cart" :product="product"></CartProduct>
                 </div>
-                <CartProduct v-for="product in cart" :product="product"></CartProduct>
             </div>
 
-            <div class='column'>
+            <div class='column' v-if='cartItemsCount !== 0'>
                 <h1 class="column-title">Поръчка</h1>
                 <div class="cart-info">
                     <p>Продукти</p>
