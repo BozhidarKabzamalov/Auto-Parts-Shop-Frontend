@@ -23,8 +23,8 @@ export default {
     },
     methods: {
         async getCategories(){
-            let response = await axios.get('http://localhost:3000/categories')
-            this.categories = response.data
+            let response = await axios.get('/categories')
+            this.categories = response.data.categories
         },
         goToCategory(category){
             router.push({ name: 'home', query: { brand: this.brand, model: this.model, categoryId: category.id } })

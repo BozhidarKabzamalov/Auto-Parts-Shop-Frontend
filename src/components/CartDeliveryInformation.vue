@@ -79,7 +79,7 @@ export default {
             }
 
             try {
-                let response = await axios.post('http://localhost:3000/createOrder', orderInformation)
+                let response = await axios.post('/createOrder', orderInformation)
                 this.setSelectedStep(3)
             } catch (error) {
                 console.log(error)

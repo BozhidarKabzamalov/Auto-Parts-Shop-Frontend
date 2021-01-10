@@ -1,25 +1,23 @@
 <template lang="html">
     <div class="admin-orders">
-        <h1 class="column-title">Поръчки</h1>
+        <div class="order-information">
+            <p class="order-id">№</p>
+            <p class="order-name">Име</p>
+            <p class="order-phone-number">Телефон</p>
+            <p class="order-total-price">Цена</p>
+        </div>
         <div class="order" v-for="order in orders">
-            <div>
-                <p>№</p>
+            <div class="order-id">
                 <p>{{ order.id }}</p>
             </div>
-            <div>
-                <p>Име</p>
+            <div class="order-name">
                 <p>{{ order.firstName }} {{ order.lastName }}</p>
             </div>
-            <div>
-                <p>Телефон</p>
+            <div class="order-phone-number">
                 <p>{{ order.phoneNumber }}</p>
             </div>
-            <div>
-                <p>Цена</p>
-                <p>{{ order.totalPrice }}</p>
-            </div>
-            <div>
-                <div class="order-details">Подробности</div>
+            <div class="order-total-price">
+                <p>{{ order.totalPrice }} лв</p>
             </div>
         </div>
     </div>
@@ -36,7 +34,7 @@ export default {
     },
     methods: {
         async getOrders(){
-            let response = await axios.get('http://localhost:3000/orders')
+            let response = await axios.get('/orders')
             console.log(response)
             this.orders = response.data.orders
         }
@@ -48,25 +46,30 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.order-information {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    border-bottom: 1px solid #dddddd;
+}
 .order {
-    padding: 12px;
+    padding: 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 20px;
     background-color: #ffffff;
-}
-.order p {
-    margin-bottom: 5px;
-}
-.order-details {
-    font-size: 14px;
-    padding: 10px;
-    color: #ffffff;
-    background-color: #46b05a;
     cursor: pointer;
+    border-bottom: 1px solid #dddddd;
 }
-.order-details:hover {
-    background-color: #3da34d;
+.order:hover {
+    background-color: #f7f7f7;
+}
+.order-id, .order-total-price {
+    width: 100px;
+}
+.order-name, .order-phone-number {
+    width: 200px;
 }
 </style>

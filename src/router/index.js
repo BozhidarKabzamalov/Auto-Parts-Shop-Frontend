@@ -7,6 +7,11 @@ import Cart from '../views/Cart.vue'
 import Login from '../views/Login.vue'
 import AdminPanel from '../views/AdminPanel.vue'
 import AdminOrders from '../components/AdminOrders.vue'
+import AdminOrder from '../components/AdminOrder.vue'
+import AdminProducts from '../components/AdminProducts.vue'
+import AdminCategories from '../components/AdminCategories.vue'
+import AdminBrands from '../components/AdminBrands.vue'
+import AdminModels from '../components/AdminModels.vue'
 import Meta from 'vue-meta'
 
 Vue.use(VueRouter)
@@ -39,13 +44,38 @@ const routes = [
         component: Login
     },
     {
-        path: '/admin',
-        name: 'admin',
+        path: "/admin",
         component: AdminPanel,
         children: [
             {
-                path: '',
+                path: "",
+                name: "adminOrders",
                 component: AdminOrders
+            },
+            {
+                path: "order/:orderId",
+                name: "adminOrder",
+                component: AdminOrder
+            },
+            {
+                path: "products",
+                name: "adminProducts",
+                component: AdminProducts
+            },
+            {
+                path: "categories",
+                name: "adminCategories",
+                component: AdminCategories
+            },
+            {
+                path: "brands",
+                name: "adminBrands",
+                component: AdminBrands
+            },
+            {
+                path: "models",
+                name: "adminModels",
+                component: AdminModels
             }
         ]
     }

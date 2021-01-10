@@ -101,6 +101,7 @@ export default {
     width: 38px;
     height: 38px;
     border: 1px solid #ddd;
+    background-color: #ffffff;
 }
 .plus-button:hover, .minus-button:hover {
     border: 1px solid #aaa;

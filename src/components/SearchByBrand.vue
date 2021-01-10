@@ -37,12 +37,12 @@ export default {
     },
     methods: {
         async getBrands(){
-            let response = await axios.get('http://localhost:3000/brands')
+            let response = await axios.get('/brands')
 
             this.brands = response.data.brands
         },
         async getModels(){
-            let response = await axios.get('http://localhost:3000/models/' + this.selectedBrand.id + '/' + this.selectedYear)
+            let response = await axios.get('/models/' + this.selectedBrand.id + '/' + this.selectedYear)
 
             this.models = response.data.models
         },
