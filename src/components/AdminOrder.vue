@@ -10,8 +10,8 @@
         <p>Допълнителна информация: {{ order.extraNotes }}</p>
         <p>Крайна цена: {{ order.totalPrice }} лв</p>
         <p>Дата: {{ timestampToDate(order.createdAt) }}</p>
-        <div class="parts">
-            <p v-for="part in order.parts">{{ part.name }}</p>
+        <div class="products">
+            <p v-for="product in order.products">{{ product.name }}</p>
         </div>
     </div>
 </template>

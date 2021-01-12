@@ -36,7 +36,7 @@ export default {
     methods: {
         async getOrders(){
             let response = await axios.get('/orders')
-            console.log(response)
+
             this.orders = response.data.orders
         },
         goToOrder(order){

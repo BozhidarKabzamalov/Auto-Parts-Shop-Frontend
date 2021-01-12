@@ -43,13 +43,13 @@ export default {
     methods: {
         async getProducts(){
             if (this.model === undefined && this.categoryId === undefined) {
-                var response = await axios.get('/parts?page=' + this.currentPage)
+                var response = await axios.get('/products?page=' + this.currentPage)
             } else if (this.categoryId !== undefined && this.model === undefined) {
-                var response = await axios.get('/parts/' + this.categoryId + '?page=' + this.currentPage)
+                var response = await axios.get('/products/' + this.categoryId + '?page=' + this.currentPage)
             } else {
-                var response = await axios.get('/parts/' + this.model + '/' + this.categoryId + '?page=' + this.currentPage)
+                var response = await axios.get('/products/' + this.model + '/' + this.categoryId + '?page=' + this.currentPage)
             }
-            this.products = response.data.parts
+            this.products = response.data.products
             this.totalItems = response.data.totalItems
             this.totalPages = response.data.totalPages
         },
