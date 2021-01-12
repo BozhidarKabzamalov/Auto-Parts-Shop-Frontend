@@ -58,6 +58,40 @@ body {
     margin-bottom: 20px;
 }
 
+.input-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+.input-container:first-child {
+    margin-top: 20px;
+}
+.input-container label {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+.input-container input, .input-container select {
+    outline: none;
+    background-color: #fff;
+    width: 100%;
+    box-shadow: none;
+    padding: 10px;
+    border-radius: 0;
+    min-height: 39px;
+    border: 1px solid #999;
+    color: #606060;
+    font-size: 13px;
+}
+.input-container input:focus, .input-container select:focus {
+    border: 1px solid #000;
+    color: #3e3e3e;
+}
+.input-container input:hover, .input-container select:hover {
+    border: 1px solid #000;
+    color: #3e3e3e;
+}
+
 @media (max-width: 500px) {
     .wrapper {
         width: 90%;

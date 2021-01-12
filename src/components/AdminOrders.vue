@@ -6,7 +6,7 @@
             <p class="order-phone-number">Телефон</p>
             <p class="order-total-price">Цена</p>
         </div>
-        <div class="order" v-for="order in orders">
+        <div class="order" v-for="order in orders" @click="goToOrder(order)">
             <div class="order-id">
                 <p>{{ order.id }}</p>
             </div>
@@ -25,6 +25,7 @@
 
 <script>
 import axios from 'axios'
+import router from '../router'
 
 export default {
     data(){
@@ -37,6 +38,9 @@ export default {
             let response = await axios.get('/orders')
             console.log(response)
             this.orders = response.data.orders
+        },
+        goToOrder(order){
+            router.push({ name: "adminOrder", params: { orderId: order.id, order: order }})
         }
     },
     mounted(){

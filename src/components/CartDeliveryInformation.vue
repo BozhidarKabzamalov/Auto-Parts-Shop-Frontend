@@ -110,35 +110,6 @@ export default {
 .column:last-child {
     margin-left: 15px;
 }
-.input-container {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-}
-.input-container:first-child {
-    margin-top: 20px;
-}
-.input-container label {
-    font-size: 14px;
-    font-weight: 700;
-    margin-bottom: 5px;
-}
-.input-container input {
-    outline: none;
-    background-color: #fff;
-    width: 100%;
-    box-shadow: none;
-    padding: 10px;
-    border-radius: 0;
-    min-height: 39px;
-    border: 1px solid #999;
-    color: #606060;
-    font-size: 13px;
-}
-.input-container input:focus {
-    border: 1px solid #000;
-    color: #3e3e3e;
-}
 .buttons-container {
     padding-top: 20px;
     border-top: 1px solid #9a9a9a;

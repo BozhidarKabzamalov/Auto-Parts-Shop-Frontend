@@ -17,6 +17,7 @@ export default {
 .admin-header {
     display: flex;
     background-color: #f7f7f7;
+    border-bottom: 1px solid #dddddd;
 }
 .admin-header li {
     font-size: 15px;
