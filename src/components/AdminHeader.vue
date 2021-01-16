@@ -16,6 +16,7 @@ export default {
 <style lang="css" scoped>
 .admin-header {
     display: flex;
+    flex-wrap: wrap;
     background-color: #f7f7f7;
     border-bottom: 1px solid #dddddd;
 }
@@ -25,6 +26,9 @@ export default {
     font-weight: 500;
     margin-right: 20px;
     padding: 20px;
+}
+.admin-header li:last-child {
+    margin-right: 0px;
 }
 .ademin-header li:hover {
     background-color: #d6e0ec;
