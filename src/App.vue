@@ -57,7 +57,6 @@ body {
     font-weight: 700;
     margin-bottom: 20px;
 }
-
 .input-container {
     display: flex;
     flex-direction: column;

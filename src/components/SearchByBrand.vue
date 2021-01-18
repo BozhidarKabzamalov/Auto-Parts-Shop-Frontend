@@ -47,7 +47,9 @@ export default {
             this.models = response.data.models
         },
         search(){
-            router.push({ name: 'categories', query: { brand: this.selectedBrand.name, model: this.selectedModel.name } })
+            if (this.selectedBrand && this.selectedModel) {
+                router.push({ name: 'categories', query: { brand: this.selectedBrand.name, model: this.selectedModel.name } })
+            }
         }
     },
     computed: {
@@ -64,13 +66,13 @@ export default {
         }
     },
     watch: {
-        selectedBrandId: function(){
-            if (this.selectedBrandId != '' && this.selectedYear != '') {
+        selectedBrand: function(){
+            if (this.selectedYear != '') {
                 this.getModels()
             }
         },
         selectedYear: function(){
-            if (this.selectedBrandId != '' && this.selectedYear != '') {
+            if (this.selectedBrand != '') {
                 this.getModels()
             }
         }
