@@ -3,7 +3,7 @@
         <p>Номер на поръчка: {{ order.id }}</p>
         <p>Име: {{ order.firstName }} {{ order.lastName }}</p>
         <p>Телефон: {{ order.phoneNumber }}</p>
-        <p>Емeйл: {{ order.email }}</p>
+        <p>Имeйл: {{ order.email }}</p>
         <p>Град: {{ order.city }}</p>
         <p>Пощенски код: {{ order.zipCode }}</p>
         <p>Адрес: {{ order.streetAddress }}</p>

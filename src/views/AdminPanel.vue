@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import AdminHeader from "../components/AdminHeader"
+import AdminHeader from "../components/Admin/AdminHeader"
 export default {
     components: {
         AdminHeader

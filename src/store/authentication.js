@@ -67,6 +67,11 @@ const authentication = {
             commit('removeUser')
             router.replace('/login')
         }
+    },
+    getters: {
+        authenticated: state => {
+            return state.user ? true : false
+        }
     }
 }
 

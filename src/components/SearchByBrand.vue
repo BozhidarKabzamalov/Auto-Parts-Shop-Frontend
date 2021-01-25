@@ -123,6 +123,7 @@ export default {
     padding: 10px 0;
     background-color: #46b05a;
     cursor: pointer;
+    user-select: none;
 }
 .search:hover {
     background-color: #3da34d;

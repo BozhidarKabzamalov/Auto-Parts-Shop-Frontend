@@ -4,7 +4,7 @@
             <ul class='nav-ul'>
                 <router-link to="/" tag='li'>Начало</router-link>
                 <router-link to="/categories" tag='li'>Категории</router-link>
-                <router-link to="/admin" tag='li'>Admin</router-link>
+                <router-link v-if="authenticated" to="/admin" tag='li'>Admin</router-link>
                 <!--<router-link to="/cart" tag='li'>Контакти</router-link>
                 <router-link to="/cart" tag='li'>За нас</router-link>
                 <router-link to="/cart" tag='li'>Доставка</router-link>
@@ -21,6 +21,9 @@
         computed: {
             cartItemsCount(){
                 return this.$store.getters.cartItemCount
+            },
+            authenticated(){
+                return this.$store.getters.authenticated
             }
         }
     }

@@ -6,13 +6,17 @@ import Categories from '../views/Categories.vue'
 import Cart from '../views/Cart.vue'
 import Login from '../views/Login.vue'
 import AdminPanel from '../views/AdminPanel.vue'
-import AdminOrders from '../components/AdminOrders.vue'
-import AdminOrder from '../components/AdminOrder.vue'
-import AdminProducts from '../components/AdminProducts.vue'
-import AdminCategories from '../components/AdminCategories.vue'
-import AdminBrands from '../components/AdminBrands.vue'
-import AdminModels from '../components/AdminModels.vue'
+import AdminOrders from '../components/Admin/AdminOrders.vue'
+import AdminOrder from '../components/Admin/AdminOrder.vue'
+import AdminProducts from '../components/Admin/AdminProducts.vue'
+import AdminCategories from '../components/Admin/AdminCategories.vue'
+import AdminBrands from '../components/Admin/AdminBrands.vue'
+import AdminModels from '../components/Admin/AdminModels.vue'
+import CartProductsList from '../components/Cart/CartProductsList.vue'
+import CartDeliveryInformation from '../components/Cart/CartDeliveryInformation.vue'
+import CartDeliverySummary from '../components/Cart/CartDeliverySummary.vue'
 import Meta from 'vue-meta'
+import store from "@/store/store.js";
 
 Vue.use(VueRouter)
 Vue.use(Meta)
@@ -35,8 +39,24 @@ const routes = [
     },
     {
         path: '/cart',
-        name: 'cart',
-        component: Cart
+        component: Cart,
+        children: [
+            {
+                path: "",
+                name: "cartProductsList",
+                component: CartProductsList
+            },
+            {
+                path: "deliveryInformation",
+                name: "deliveryInformation",
+                component: CartDeliveryInformation
+            },
+            {
+                path: "deliverySummary",
+                name: "deliverySummary",
+                component: CartDeliverySummary
+            },
+        ]
     },
     {
         path: '/login',
@@ -46,6 +66,13 @@ const routes = [
     {
         path: "/admin",
         component: AdminPanel,
+        beforeEnter: (to, from, next) => {
+            if (!store.getters.authenticated) {
+                next({ name: "login" })
+            } else {
+                next()
+            }
+        },
         children: [
             {
                 path: "",

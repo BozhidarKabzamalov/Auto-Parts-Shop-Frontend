@@ -9,17 +9,19 @@
 </template>
 
 <script>
-    import Header from './components/Header.vue'
-    import Footer from './components/Footer.vue'
+    import Header from './components/Layout/Header.vue'
+    import Footer from './components/Layout/Footer.vue'
 
     export default {
         metaInfo: {
-          title: 'Default Title',
-          titleTemplate: '%s | My Awesome Webapp'
+          titleTemplate: '%sНели'
         },
         components: {
             Header,
             Footer
+        },
+        mounted(){
+            this.$store.dispatch('autoLogin');
         }
     }
 </script>

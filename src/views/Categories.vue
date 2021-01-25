@@ -14,6 +14,9 @@ import axios from 'axios'
 import router from '../router'
 
 export default {
+    metaInfo: {
+      title: 'Категории | '
+    },
     data(){
         return {
             categories: null,

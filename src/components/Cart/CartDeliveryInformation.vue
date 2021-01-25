@@ -41,7 +41,7 @@
             </div>
         </div>
         <div class="buttons-container">
-            <div class="previous-step" @click="setSelectedStep(1)">
+            <div class="previous-step" @click="goToCart()">
                 <i class="fas fa-chevron-left"></i>
                 <p>Продукти</p>
             </div>
@@ -55,6 +55,7 @@
 
 <script>
 import axios from 'axios'
+import router from '../../router'
 
 export default {
     data(){
@@ -72,6 +73,9 @@ export default {
         }
     },
     methods: {
+        goToCart(){
+            router.push({ name: 'cartProductsList' })
+        },
         async finishOrder(){
             let orderInformation = {
                 items: this.cart,
@@ -80,13 +84,10 @@ export default {
 
             try {
                 let response = await axios.post('/createOrder', orderInformation)
-                this.setSelectedStep(3)
+                router.push({ name: 'deliverySummary', params: { orderId: response.data.order.id, orderTotalPrice: response.data.order.totalPrice } })
             } catch (error) {
                 console.log(error)
             }
-        },
-        setSelectedStep(stepNumber){
-            this.$emit('setSelectedStep', stepNumber);
         }
     },
     computed: {

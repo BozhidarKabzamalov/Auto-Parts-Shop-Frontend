@@ -84,7 +84,7 @@ export default {
             formData.append("serialNumber", this.product.serialNumber)
             formData.append("image", this.product.image)
             formData.append("categoryId", this.product.categoryId)
-            formData.append("brands", JSON.stringify(this.productBrandsIds))
+            formData.append("brands", JSON.stringify(this.productModelsIds))
             formData.append("models", JSON.stringify(this.productModelsIds))
 
             let response = await axios.post("/createProduct", formData)

@@ -21,6 +21,9 @@
 import router from '../router'
 
 export default {
+    metaInfo: {
+      title: 'Вход | '
+    },
     data(){
         return {
             username: '',

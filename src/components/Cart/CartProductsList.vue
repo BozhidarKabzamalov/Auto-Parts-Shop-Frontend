@@ -28,7 +28,7 @@
                     <p>Крайна цена</p>
                     <p>{{ cartTotalPrice }} лв</p>
                 </div>
-                <div class="next-step" @click='setSelectedStep(2)'>Напред</div>
+                <div class="next-step" @click='goToDeliveryInformation()'>Напред</div>
             </div>
 
         </div>
@@ -37,14 +37,15 @@
 
 <script>
 import CartProduct from './CartProduct'
+import router from '../../router'
 
 export default {
     components: {
         CartProduct
     },
     methods: {
-        setSelectedStep(stepNumber){
-            this.$emit('setSelectedStep', stepNumber)
+        goToDeliveryInformation(){
+            router.push({ name: 'deliveryInformation' })
         }
     },
     computed: {
