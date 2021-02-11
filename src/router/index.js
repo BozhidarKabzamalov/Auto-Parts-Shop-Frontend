@@ -66,13 +66,6 @@ const routes = [
     {
         path: "/admin",
         component: AdminPanel,
-        beforeEnter: (to, from, next) => {
-            if (!store.getters.authenticated) {
-                next({ name: "login" })
-            } else {
-                next()
-            }
-        },
         children: [
             {
                 path: "",

@@ -1,18 +1,52 @@
 <template lang="html">
     <div class="admin-order">
-        <p>Номер на поръчка: {{ order.id }}</p>
-        <p>Име: {{ order.firstName }} {{ order.lastName }}</p>
-        <p>Телефон: {{ order.phoneNumber }}</p>
-        <p>Имeйл: {{ order.email }}</p>
-        <p>Град: {{ order.city }}</p>
-        <p>Пощенски код: {{ order.zipCode }}</p>
-        <p>Адрес: {{ order.streetAddress }}</p>
-        <p>Допълнителна информация: {{ order.extraNotes }}</p>
-        <p>Крайна цена: {{ order.totalPrice }} лв</p>
-        <p>Дата: {{ timestampToDate(order.createdAt) }}</p>
-        <div class="products">
-            <p v-for="product in order.products">{{ product.name }}</p>
+        <div>
+            <p>Номер на поръчка</p>
+            <p>{{ order.id }}</p>
         </div>
+        <div>
+            <p>Име</p>
+            <p>{{ order.firstName }} {{ order.lastName }}</p>
+        </div>
+        <div>
+            <p>Телефон</p>
+            <p>{{ order.phoneNumber }}</p>
+        </div>
+        <div>
+            <p>Имeйл</p>
+            <p>{{ order.email }}</p>
+        </div>
+        <div>
+            <p>Град</p>
+            <p>{{ order.city }}</p>
+        </div>
+        <div>
+            <p>Пощенски код</p>
+            <p>{{ order.zipCode }}</p>
+        </div>
+        <div>
+            <p>Адрес</p>
+            <p>{{ order.streetAddress }}</p>
+        </div>
+        <div>
+            <p>Допълнителна информация</p>
+            <p>{{ order.extraNotes }}</p>
+        </div>
+        <div>
+            <p>Крайна цена</p>
+            <p>{{ order.totalPrice }} лв</p>
+        </div>
+        <div>
+            <p>Дата</p>
+            <p>{{ timestampToDate(order.createdAt) }}</p>
+        </div>
+        <div>
+            <p>Продукти</p>
+            <div class="products">
+                <p class="product" v-for="product in order.products">{{ product.Order_Product.quantity}} - {{ product.name }} - {{ product.serialNumber }} - {{ product.price }} лв</p>
+            </div>
+        </div>
+
     </div>
 </template>
 
@@ -38,8 +72,12 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.admin-order > p {
+.admin-order > div {
     padding: 15px;
     border-bottom: 1px solid #dddddd;
+}
+.admin-order > div > p:first-child {
+    font-weight: 500;
+    margin-bottom: 5px;
 }
 </style>

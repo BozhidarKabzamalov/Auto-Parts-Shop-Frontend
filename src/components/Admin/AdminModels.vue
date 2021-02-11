@@ -22,7 +22,12 @@
                 <option v-for='brand in brands' :value='brand.id'>{{ brand.name }}</option>
             </select>
         </div>
-        <div @click="createModel">Създай</div>
+        <div class="btn btn-primary" @click="createModel">Създай</div>
+        <div class="models">
+            <div class="model" v-for="model in models">
+                <p>{{ model.name }}</p>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -38,7 +43,8 @@ export default {
                 manufacturedTo: "",
                 brandId: ""
             },
-            brands: ""
+            brands: "",
+            models: null
         }
     },
     methods: {
@@ -49,6 +55,11 @@ export default {
             let response = await axios.get('/brands')
 
             this.brands = response.data.brands
+        },
+        async getModels(){
+            let response = await axios.get('/models')
+
+            this.models = response.data.models
         }
     },
     computed: {
@@ -66,10 +77,13 @@ export default {
     },
     mounted(){
         this.getBrands()
+        this.getModels()
     }
 }
 </script>
 
 <style lang="css" scoped>
-
+.btn {
+    width: 250px;
+}
 </style>

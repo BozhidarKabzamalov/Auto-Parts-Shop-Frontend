@@ -51,9 +51,30 @@ body {
     width: 70%;
     margin: 0 auto;
 }
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    color: #ffffff;
+    padding: 10px 0;
+    cursor: pointer;
+    user-select: none;
+}
+.btn-primary {
+    background-color: #46b05a;
+}
+.btn-primary:hover {
+    background-color: #3da34d;
+}
+.btn-secondary {
+    background-color: #7289da;
+}
+.btn-secondary:hover {
+    background-color: #677bc4;
+}
 .column-title {
     padding: 20px 0;
-    line-height: 35px;
     border-bottom: 1px solid #9a9a9a;
     font-size: 18px;
     font-weight: 700;
@@ -91,6 +112,15 @@ body {
 .input-container input:hover, .input-container select:hover {
     border: 1px solid #000;
     color: #3e3e3e;
+}
+.validation-error {
+    border: 1px solid #f79483;
+}
+.validation-error:hover {
+    border: 1px solid #f79483;
+}
+.validation-error:focus {
+    border: 1px solid #f79483;
 }
 
 @media (max-width: 500px) {

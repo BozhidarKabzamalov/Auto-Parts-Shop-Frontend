@@ -28,7 +28,7 @@
                     <p>Крайна цена</p>
                     <p>{{ cartTotalPrice }} лв</p>
                 </div>
-                <div class="next-step" @click='goToDeliveryInformation()'>Напред</div>
+                <div class="btn btn-primary" @click='goToDeliveryInformation()'>Напред</div>
             </div>
 
         </div>
@@ -81,19 +81,6 @@ export default {
     justify-content: space-between;
     margin: 20px 0;
 }
-.next-step {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #ffffff;
-    background-color: #46b05a;
-    height: 60px;
-    cursor: pointer;
-    margin-bottom: 20px;
-}
-.next-step:hover {
-    background-color: #3da34d;
-}
 .product-information {
     display: flex;
     justify-content: space-between;
@@ -121,6 +108,9 @@ export default {
 }
 .product-price {
     width: 80px;
+}
+.btn {
+    height: 60px;
 }
 
 @media (max-width: 1450px) {

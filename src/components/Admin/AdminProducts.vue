@@ -46,7 +46,7 @@
         <div class="input-container">
             <input type="file" name="image" @change="setProductImage($event)">
         </div>
-        <div @click="createProduct">Създай</div>
+        <div class="btn btn-primary" @click="createProduct">Създай</div>
     </div>
 </template>
 
@@ -189,5 +189,8 @@ export default {
 }
 .selected-model {
     margin-bottom: 10px;
+}
+.btn {
+    width: 250px;
 }
 </style>

@@ -4,48 +4,48 @@
             <div class="column">
                 <h1 class="column-title">Лични данни</h1>
                 <div class="input-container">
-                    <label>Име:</label>
-                    <input type="text" name="firstName" v-model="deliveryInformation.firstName">
+                    <label>Име</label>
+                    <input :class="{ 'validation-error': $v.deliveryInformation.firstName.$error }" type="text" name="firstName" v-model="deliveryInformation.firstName">
                 </div>
                 <div class="input-container">
-                    <label>Фамилия:</label>
-                    <input type="text" name="lastName" v-model="deliveryInformation.lastName">
+                    <label>Фамилия</label>
+                    <input :class="{ 'validation-error': $v.deliveryInformation.lastName.$error }" type="text" name="lastName" v-model="deliveryInformation.lastName">
                 </div>
                 <div class="input-container">
-                    <label>Телефон:</label>
-                    <input type="number" name="phoneNumber" v-model="deliveryInformation.phoneNumber">
+                    <label>Телефон</label>
+                    <input :class="{ 'validation-error': $v.deliveryInformation.phoneNumber.$error }" type="number" name="phoneNumber" v-model="deliveryInformation.phoneNumber">
                 </div>
                 <div class="input-container">
-                    <label>E-mail:</label>
-                    <input type="email" name="email" v-model="deliveryInformation.email">
+                    <label>E-mail</label>
+                    <input :class="{ 'validation-error': $v.deliveryInformation.email.$error }" type="email" name="email" v-model="deliveryInformation.email">
                 </div>
             </div>
             <div class="column">
                 <h1 class="column-title">Адрес за доставка</h1>
                 <div class="input-container">
-                    <label>Населено място:</label>
-                    <input type="text" name="city" v-model="deliveryInformation.city">
+                    <label>Населено място</label>
+                    <input :class="{ 'validation-error': $v.deliveryInformation.city.$error }" type="text" name="city" v-model="deliveryInformation.city">
                 </div>
                 <div class="input-container">
-                    <label>Пощенски код:</label>
-                    <input type="number" name="zip" v-model="deliveryInformation.zipCode">
+                    <label>Пощенски код</label>
+                    <input :class="{ 'validation-error': $v.deliveryInformation.zipCode.$error }" type="number" name="zip" v-model="deliveryInformation.zipCode">
                 </div>
                 <div class="input-container">
                     <label>Адрес</label>
-                    <input type="text" name="streetAddress" v-model="deliveryInformation.streetAddress" placeholder="Или адрес на офис на Еконт/Speedy">
+                    <input :class="{ 'validation-error': $v.deliveryInformation.streetAddress.$error }" type="text" name="streetAddress" v-model="deliveryInformation.streetAddress" placeholder="Или адрес на офис на Еконт/Speedy">
                 </div>
                 <div class="input-container">
-                    <label>Допълнителна информация:</label>
-                    <input type="text" name="extraNotes" v-model="deliveryInformation.extraNotes">
+                    <label>Допълнителна информация</label>
+                    <input :class="{ 'validation-error': $v.deliveryInformation.extraNotes.$error }" type="text" name="extraNotes" v-model="deliveryInformation.extraNotes">
                 </div>
             </div>
         </div>
         <div class="buttons-container">
-            <div class="previous-step" @click="goToCart()">
+            <div class="btn btn-primary" @click="goToCart()">
                 <i class="fas fa-chevron-left"></i>
                 <p>Продукти</p>
             </div>
-            <div class="next-step" @click="finishOrder">
+            <div class="btn btn-secondary" @click="finishOrder">
                 <p>Завърши поръчка</p>
                 <i class="fas fa-chevron-right"></i>
             </div>
@@ -56,6 +56,7 @@
 <script>
 import axios from 'axios'
 import router from '../../router'
+import { required, minLength, maxLength, email } from 'vuelidate/lib/validators'
 
 export default {
     data(){
@@ -72,6 +73,49 @@ export default {
             }
         }
     },
+    validations: {
+        deliveryInformation: {
+            firstName: {
+                required,
+                minLength: minLength(1),
+                maxLength: maxLength(255)
+            },
+            lastName: {
+                required,
+                minLength: minLength(1),
+                maxLength: maxLength(255)
+            },
+            phoneNumber: {
+                required,
+                minLength: minLength(1),
+                maxLength: maxLength(255)
+            },
+            email: {
+                email,
+                minLength: minLength(1),
+                maxLength: maxLength(255)
+            },
+            city: {
+                required,
+                minLength: minLength(1),
+                maxLength: maxLength(255)
+            },
+            zipCode: {
+                required,
+                minLength: minLength(1),
+                maxLength: maxLength(255)
+            },
+            streetAddress: {
+                required,
+                minLength: minLength(1),
+                maxLength: maxLength(255)
+            },
+            extraNotes: {
+                minLength: minLength(1),
+                maxLength: maxLength(255)
+            },
+        }
+    },
     methods: {
         goToCart(){
             router.push({ name: 'cartProductsList' })
@@ -82,11 +126,15 @@ export default {
                 deliveryInformation: this.deliveryInformation
             }
 
-            try {
-                let response = await axios.post('/createOrder', orderInformation)
-                router.push({ name: 'deliverySummary', params: { orderId: response.data.order.id, orderTotalPrice: response.data.order.totalPrice } })
-            } catch (error) {
-                console.log(error)
+            this.$v.$touch()
+
+            if (!this.$v.$invalid) {
+                try {
+                    let response = await axios.post('/createOrder', orderInformation)
+                    router.push({ name: 'deliverySummary', params: { orderId: response.data.order.id, orderTotalPrice: response.data.order.totalPrice } })
+                } catch (error) {
+                    console.log(error)
+                }
             }
         }
     },
@@ -112,37 +160,18 @@ export default {
     margin-left: 15px;
 }
 .buttons-container {
-    padding-top: 20px;
-    border-top: 1px solid #9a9a9a;
     display: flex;
     justify-content: space-between;
 }
-.next-step, .previous-step {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #ffffff;
+.btn {
     height: 60px;
     width: 250px;
-    cursor: pointer;
 }
-.next-step {
-    background-color: #46b05a;
-}
-.next-step:hover {
-    background-color: #3da34d;
-}
-.previous-step {
-    background-color: #7289da;
-}
-.previous-step:hover {
-    background-color: #677bc4;
-}
-.next-step i {
-    margin-left: 10px;
-}
-.previous-step i {
+.btn-primary i {
     margin-right: 10px;
+}
+.btn-secondary i {
+    margin-left: 10px;
 }
 
 @media (max-width: 860px) {
@@ -160,7 +189,7 @@ export default {
         align-items: center;
         margin-bottom: 20px;
     }
-    .previous-step {
+    .btn-primary {
         margin-bottom: 20px;
     }
 }

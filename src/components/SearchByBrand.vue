@@ -16,7 +16,7 @@
                 <option disabled value="">Модел</option>
                 <option v-for='model in models' :value='model'>{{ model.name }}</option>
             </select>
-            <div class="search" @click='search()'>Търси</div>
+            <div class="btn btn-primary" @click='search()'>Търси</div>
         </div>
     </div>
 </template>
@@ -113,20 +113,6 @@ export default {
 }
 .year {
     flex: 1
-}
-.search {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    color: #ffffff;
-    padding: 10px 0;
-    background-color: #46b05a;
-    cursor: pointer;
-    user-select: none;
-}
-.search:hover {
-    background-color: #3da34d;
 }
 
 @media (max-width: 500px) {
