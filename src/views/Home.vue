@@ -1,5 +1,5 @@
 <template lang="html">
-    <div class="home">
+    <div class="home wrapper">
         <div class="column">
             <SearchByBrand></SearchByBrand>
         </div>

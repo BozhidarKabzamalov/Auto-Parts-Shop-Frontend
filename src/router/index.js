@@ -15,6 +15,10 @@ import AdminModels from '../components/Admin/AdminModels.vue'
 import CartProductsList from '../components/Cart/CartProductsList.vue'
 import CartDeliveryInformation from '../components/Cart/CartDeliveryInformation.vue'
 import CartDeliverySummary from '../components/Cart/CartDeliverySummary.vue'
+import CreateProduct from '../components/Admin/CreateProduct.vue'
+import CreateCategory from '../components/Admin/CreateCategory.vue'
+import CreateBrand from '../components/Admin/CreateBrand.vue'
+import CreateModel from '../components/Admin/CreateModel.vue'
 import Meta from 'vue-meta'
 import store from "@/store/store.js";
 
@@ -83,9 +87,19 @@ const routes = [
                 component: AdminProducts
             },
             {
+                path: "products/createProduct",
+                name: "createProduct",
+                component: CreateProduct
+            },
+            {
                 path: "categories",
                 name: "adminCategories",
                 component: AdminCategories
+            },
+            {
+                path: "categories/createCategory",
+                name: "createCategory",
+                component: CreateCategory
             },
             {
                 path: "brands",
@@ -93,10 +107,20 @@ const routes = [
                 component: AdminBrands
             },
             {
+                path: "brands/createBrand",
+                name: "createBrand",
+                component: CreateBrand
+            },
+            {
                 path: "models",
                 name: "adminModels",
                 component: AdminModels
-            }
+            },
+            {
+                path: "models/createModel",
+                name: "createModel",
+                component: CreateModel
+            },
         ]
     }
 ]

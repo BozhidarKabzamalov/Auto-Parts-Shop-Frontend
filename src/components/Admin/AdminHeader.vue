@@ -1,11 +1,15 @@
 <template lang="html">
-    <ul class="admin-header">
-        <router-link :to="{ name: 'adminOrders' }" tag='li'>Поръчки</router-link>
-        <router-link :to="{ name: 'adminProducts' }" tag='li'>Продукти</router-link>
-        <router-link :to="{ name: 'adminCategories' }" tag='li'>Категории</router-link>
-        <router-link :to="{ name: 'adminBrands' }" tag='li'>Марки</router-link>
-        <router-link :to="{ name: 'adminModels' }" tag='li'>Модели</router-link>
-    </ul>
+    <div class="admin-header">
+        <div class="wrapper">
+            <ul class="admin-ul">
+                <router-link :to="{ name: 'adminOrders' }" tag='li'>Поръчки</router-link>
+                <router-link :to="{ name: 'adminProducts' }" tag='li'>Продукти</router-link>
+                <router-link :to="{ name: 'adminCategories' }" tag='li'>Категории</router-link>
+                <router-link :to="{ name: 'adminBrands' }" tag='li'>Марки</router-link>
+                <router-link :to="{ name: 'adminModels' }" tag='li'>Модели</router-link>
+            </ul>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -15,22 +19,23 @@ export default {
 
 <style lang="css" scoped>
 .admin-header {
-    display: flex;
-    flex-wrap: wrap;
     background-color: #f7f7f7;
     border-bottom: 1px solid #dddddd;
 }
-.admin-header li {
+.admin-ul {
+    display: flex;
+    flex-wrap: wrap;
+}
+.admin-ul li {
     font-size: 15px;
     cursor: pointer;
     font-weight: 500;
-    margin-right: 20px;
-    padding: 20px;
+    padding: 16px 30px 16px 0;
 }
-.admin-header li:last-child {
+.admin-ul li:last-child {
     margin-right: 0px;
 }
-.ademin-header li:hover {
+.ademin-ul li:hover {
     background-color: #d6e0ec;
 }
 </style>

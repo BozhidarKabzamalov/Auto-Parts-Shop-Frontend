@@ -1,5 +1,5 @@
 <template lang="html">
-    <div class="login">
+    <div class="login wrapper">
         <div class="login-container">
             <p>Welcome back!</p>
             <form @submit.prevent="login" novalidate>

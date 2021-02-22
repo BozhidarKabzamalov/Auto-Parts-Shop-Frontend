@@ -1,10 +1,12 @@
 <template>
-    <div class="categories">
-        <div class='category' v-for='category in categories' @click='goToCategory(category)'>
-            <div class="category-image-wrapper">
-                <img class='category-image' :src="category.image" :alt="category.name">
+    <div class="wrapper">
+        <div class="categories">
+            <div class='category' v-for='category in categories' @click='goToCategory(category)'>
+                <div class="category-image-wrapper">
+                    <img class='category-image' :src="category.image" :alt="category.name">
+                </div>
+                <p class='category-name'>{{ category.name }}</p>
             </div>
-            <p class='category-name'>{{ category.name }}</p>
         </div>
     </div>
 </template>

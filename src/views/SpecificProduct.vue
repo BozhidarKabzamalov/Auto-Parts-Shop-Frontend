@@ -1,5 +1,5 @@
 <template lang="html">
-    <div class="specific-product">
+    <div class="specific-product wrapper">
         Product
     </div>
 </template>

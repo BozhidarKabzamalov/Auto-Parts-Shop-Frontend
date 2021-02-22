@@ -1,7 +1,9 @@
 <template lang="html">
     <div class="admin-panel">
         <AdminHeader></AdminHeader>
-        <router-view/>
+        <div class="wrapper">
+            <router-view/>
+        </div>
     </div>
 </template>
 

@@ -1,48 +1,53 @@
 <template lang="html">
     <div class="admin-categories">
-        <div class="input-container">
-            <input type="text" v-model="category.name" placeholder="Име">
+        <div class="column-title">
+            <p>Категории</p>
+            <div class="create-button" @click="goToCreateCategory()">Добави</div>
         </div>
-        <div class="input-container">
-            <input type="file" name="image" @change="setCategoryImage($event)">
-        </div>
-        <div class="btn btn-primary" @click="createCategory">Създай</div>
         <div class="categories">
             <div class="category" v-for="category in categories">
                 <p>{{ category.name }}</p>
             </div>
         </div>
+        <Pagination :currentPage="currentPage" :totalPages="totalPages" @setCurrentPage="setCurrentPage"></Pagination>
     </div>
 </template>
 
 <script>
 import axios from 'axios'
+import router from "../../router"
+import Pagination from "../Pagination"
 
 export default {
+    components: {
+        Pagination
+    },
     data() {
         return {
-            category: {
-                name: "",
-                image: null
-            },
-            categories: null
+            categories: null,
+            currentPage: 1,
+            totalItems: null,
+            totalPages: null
         }
     },
     methods: {
-        async createCategory(){
-            let formData = new FormData();
-            formData.append("name", this.category.name)
-            formData.append("image", this.category.image)
-
-            let response = await axios.post("/createCategory", formData)
-        },
         async getCategories(){
-            let response = await axios.get("/categories")
+            let response = await axios.get("/categories?page=" + this.currentPage)
 
             this.categories = response.data.categories
+            this.totalItems = response.data.totalItems
+            this.totalPages = response.data.totalPages
         },
-        setCategoryImage(event){
-            this.category.image = event.target.files[0]
+        setCurrentPage(page){
+            this.currentPage = page
+        },
+        goToCreateCategory(){
+            router.push({ name: "createCategory" })
+        }
+    },
+    watch: {
+        currentPage(){
+            this.getCategories()
         }
     },
     mounted(){
@@ -52,7 +57,5 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.btn {
-    width: 250px;
-}
+
 </style>

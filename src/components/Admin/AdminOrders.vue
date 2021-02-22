@@ -1,5 +1,6 @@
 <template lang="html">
     <div class="admin-orders">
+        <h1 class="column-title">Поръчки</h1>
         <div class="order-information">
             <p class="order-id">№</p>
             <p class="order-name">Име</p>
@@ -50,6 +51,9 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.column-title {
+    margin-bottom: 0;
+}
 .order-information {
     display: flex;
     justify-content: space-between;
