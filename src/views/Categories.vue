@@ -8,28 +8,42 @@
                 <p class='category-name'>{{ category.name }}</p>
             </div>
         </div>
+        <Pagination :currentPage="currentPage" :totalPages="totalPages" @setCurrentPage="setCurrentPage"></Pagination>
     </div>
 </template>
 
 <script>
 import axios from 'axios'
 import router from '../router'
+import Pagination from '../components/Pagination'
 
 export default {
     metaInfo: {
       title: 'Категории | '
     },
+    components: {
+        Pagination
+    },
     data(){
         return {
             categories: null,
             brand: this.$route.query.brand,
-            model: this.$route.query.model
+            model: this.$route.query.model,
+            currentPage: 1,
+            totalItems: null,
+            totalPages: null
         }
     },
     methods: {
         async getCategories(){
-            let response = await axios.get('/categories')
+            let response = await axios.get('/categories?page=' + this.currentPage)
+            console.log(response)
             this.categories = response.data.categories
+            this.totalItems = response.data.totalItems
+            this.totalPages = response.data.totalPages
+        },
+        setCurrentPage(page){
+            this.currentPage = page
         },
         goToCategory(category){
             router.push({ name: 'home', query: { brand: this.brand, model: this.model, categoryId: category.id } })

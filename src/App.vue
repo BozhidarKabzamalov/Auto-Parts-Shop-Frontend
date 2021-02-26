@@ -120,6 +120,17 @@ body {
 .validation-error:focus {
     border: 1px solid #f79483;
 }
+.create-button {
+    font-size: 14px;
+    font-weight: 500;
+    border: 1px solid #999;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.create-button:hover {
+    border: 1px solid #000;
+}
 
 @media (max-width: 500px) {
     .wrapper {

@@ -6,7 +6,10 @@
         </div>
         <div class="products">
             <div class="product" v-for="product in products">
-                <p>{{ product.id }}</p>
+                <div class="product-image-container">
+                    <img class='product-image' :src="product.image" :alt="product.name">
+                </div>
+                <p>{{ product.name }}</p>
             </div>
         </div>
         <Pagination :currentPage="currentPage" :totalPages="totalPages" @setCurrentPage="setCurrentPage"></Pagination>
@@ -58,21 +61,33 @@ export default {
 
 <style>
 .column-title {
+    margin-bottom: 0px;
+}
+.product {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #dddddd;
+    padding: 20px 0;
+    font-size: 15px;
+}
+.product-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    margin-right: 15px;
+}
+.product-image {
+    display: block;
+    max-height: 100%;
+    max-width: 100%;
+}
+.column-title {
     display: flex;
     align-items: center;
 }
 .column-title > p {
     margin-right: 10px;
-}
-.create-button {
-    font-size: 14px;
-    font-weight: 500;
-    border: 1px solid #999;
-    padding: 5px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-.create-button:hover {
-    border: 1px solid #000;
 }
 </style>

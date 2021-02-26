@@ -21,24 +21,37 @@
                 <p>{{ order.totalPrice }} лв</p>
             </div>
         </div>
+        <Pagination :currentPage="currentPage" :totalPages="totalPages" @setCurrentPage="setCurrentPage"></Pagination>
     </div>
 </template>
 
 <script>
 import axios from 'axios'
 import router from '../../router'
+import Pagination from '../Pagination'
 
 export default {
+    components: {
+        Pagination
+    },
     data(){
         return {
-            orders: null
+            orders: null,
+            currentPage: 1,
+            totalItems: null,
+            totalPages: null
         }
     },
     methods: {
         async getOrders(){
-            let response = await axios.get('/orders')
+            let response = await axios.get('/orders?page=' + this.currentPage)
 
             this.orders = response.data.orders
+            this.totalItems = response.data.totalItems
+            this.totalPages = response.data.totalPages
+        },
+        setCurrentPage(page){
+            this.currentPage = page
         },
         goToOrder(order){
             router.push({ name: "adminOrder", params: { orderId: order.id, order: order }})

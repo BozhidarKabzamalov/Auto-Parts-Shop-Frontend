@@ -6,7 +6,11 @@
         </div>
         <div class="categories">
             <div class="category" v-for="category in categories">
+                <div class="category-image-container">
+                    <img class='category-image' :src="category.image" :alt="category.name">
+                </div>
                 <p>{{ category.name }}</p>
+                <div @click="deleteCategory(category.id)">X</div>
             </div>
         </div>
         <Pagination :currentPage="currentPage" :totalPages="totalPages" @setCurrentPage="setCurrentPage"></Pagination>
@@ -38,6 +42,12 @@ export default {
             this.totalItems = response.data.totalItems
             this.totalPages = response.data.totalPages
         },
+        async deleteCategory(categoryId){
+            console.log('hi')
+            let response = await axios.post("/deleteCategory", { categoryId: categoryId })
+
+            console.log(response)
+        },
         setCurrentPage(page){
             this.currentPage = page
         },
@@ -57,5 +67,27 @@ export default {
 </script>
 
 <style lang="css" scoped>
-
+.column-title {
+    margin-bottom: 0px;
+}
+.category {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #dddddd;
+    padding: 20px 0;
+    font-size: 15px;
+}
+.category-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    margin-right: 15px;
+}
+.category-image {
+    display: block;
+    max-height: 100%;
+    max-width: 100%;
+}
 </style>

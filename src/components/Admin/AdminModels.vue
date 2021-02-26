@@ -2,69 +2,64 @@
     <div class="admin-models">
         <div class="column-title">
             <p>Модели</p>
-            <div class="create-order"></div>
+            <div class="create-button" @click="goToCreateModel()">Добави</div>
         </div>
         <div class="models">
             <div class="model" v-for="model in models">
                 <p>{{ model.name }}</p>
             </div>
         </div>
+        <Pagination :currentPage="currentPage" :totalPages="totalPages" @setCurrentPage="setCurrentPage"></Pagination>
     </div>
 </template>
 
 <script>
 import axios from "axios"
+import router from "../../router"
+import Pagination from "../Pagination"
 
 export default {
+    components: {
+        Pagination
+    },
     data(){
         return {
-            model: {
-                name: "",
-                manufacturedFrom: "",
-                manufacturedTo: "",
-                brandId: ""
-            },
-            brands: "",
-            models: null
+            models: null,
+            currentPage: 1,
+            totalItems: null,
+            totalPages: null
         }
     },
     methods: {
-        async createModel(){
-            let response = await axios.post("/createModel", this.model)
-        },
-        async getBrands(){
-            let response = await axios.get('/brands')
-
-            this.brands = response.data.brands
-        },
         async getModels(){
-            let response = await axios.get('/models')
+            let response = await axios.get('/models?page=' + this.currentPage)
 
             this.models = response.data.models
-        }
-    },
-    computed: {
-        years(){
-            let yearsArray = [];
-            let startYear = 1950
-            let currentYear = new Date().getFullYear()
-
-            while ( startYear <= currentYear ) {
-                yearsArray.unshift(startYear++);
-            }
-
-            return yearsArray;
+            this.totalItems = response.data.totalItems
+            this.totalPages = response.data.totalPages
+        },
+        setCurrentPage(page){
+            this.currentPage = page
+        },
+        goToCreateModel(){
+            router.push({ name: "createModel" })
         }
     },
     mounted(){
-        this.getBrands()
         this.getModels()
     }
 }
 </script>
 
 <style lang="css" scoped>
-.btn {
-    width: 250px;
+.column-title {
+    margin-bottom: 0px;
+}
+.model {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #dddddd;
+    padding: 20px 0;
+    font-size: 15px;
 }
 </style>

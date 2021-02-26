@@ -1,5 +1,6 @@
 <template lang="html">
     <div class="create-brand">
+        <h1 class="column-title">Добави Марка</h1>
         <div class="input-container">
             <input :class="{ 'validation-error': $v.brand.name.$error }" type="text" v-model="brand.name" placeholder="Име">
         </div>
@@ -9,6 +10,7 @@
 
 <script>
 import axios from 'axios'
+import router from '../../router'
 import { required, minLength, maxLength } from 'vuelidate/lib/validators'
 
 export default {
@@ -35,6 +37,8 @@ export default {
             if (!this.$v.$invalid) {
                 try {
                     let response = await axios.post("/createBrand", this.brand)
+
+                    router.push({name: "adminBrands"})
                 } catch (e) {
                     console.log(e)
                 }

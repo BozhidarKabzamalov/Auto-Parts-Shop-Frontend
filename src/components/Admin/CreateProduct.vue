@@ -1,5 +1,6 @@
 <template lang="html">
     <div class="create-product">
+        <h1 class="column-title">Добави Продукт</h1>
         <div class="input-container">
             <input type="text" v-model="product.name" placeholder="Име">
         </div>
@@ -52,6 +53,7 @@
 
 <script>
 import axios from "axios"
+import router from '../../router'
 
 export default {
     data(){
@@ -88,6 +90,8 @@ export default {
             formData.append("models", JSON.stringify(this.productModelsIds))
 
             let response = await axios.post("/createProduct", formData)
+
+            router.push({ name: "adminProducts" })
         },
         setProductImage(event){
             this.product.image = event.target.files[0]

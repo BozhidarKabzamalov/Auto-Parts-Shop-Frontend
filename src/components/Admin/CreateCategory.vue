@@ -1,5 +1,6 @@
 <template lang="html">
     <div class="create-category">
+        <h1 class="column-title">Добави Категория</h1>
         <div class="input-container">
             <input type="text" v-model="category.name" placeholder="Име">
         </div>
@@ -12,6 +13,7 @@
 
 <script>
 import axios from 'axios'
+import router from '../../router'
 
 export default {
     data() {
@@ -29,6 +31,8 @@ export default {
             formData.append("image", this.category.image)
 
             let response = await axios.post("/createCategory", formData)
+
+            router.push({ name: "adminCategories"})
         },
         setCategoryImage(event){
             this.category.image = event.target.files[0]
