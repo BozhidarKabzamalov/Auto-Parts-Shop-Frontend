@@ -37,7 +37,7 @@ export default {
     methods: {
         async getCategories(){
             let response = await axios.get('/categories?page=' + this.currentPage)
-            console.log(response)
+
             this.categories = response.data.categories
             this.totalItems = response.data.totalItems
             this.totalPages = response.data.totalPages

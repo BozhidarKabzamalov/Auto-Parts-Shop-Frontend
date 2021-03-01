@@ -7,6 +7,7 @@
         <div class="models">
             <div class="model" v-for="model in models">
                 <p>{{ model.name }}</p>
+                <div class="btn btn-danger" @click="deleteModel(model.id)">Delete</div>
             </div>
         </div>
         <Pagination :currentPage="currentPage" :totalPages="totalPages" @setCurrentPage="setCurrentPage"></Pagination>
@@ -24,7 +25,7 @@ export default {
     },
     data(){
         return {
-            models: null,
+            models: [],
             currentPage: 1,
             totalItems: null,
             totalPages: null
@@ -37,6 +38,11 @@ export default {
             this.models = response.data.models
             this.totalItems = response.data.totalItems
             this.totalPages = response.data.totalPages
+        },
+        async deleteModel(modelId){
+            let response = await axios.post('/deleteModel', { modelId })
+
+            console.log(response)
         },
         setCurrentPage(page){
             this.currentPage = page
@@ -61,5 +67,9 @@ export default {
     border-bottom: 1px solid #dddddd;
     padding: 20px 0;
     font-size: 15px;
+}
+.btn {
+    margin-left: auto;
+    width: 100px;
 }
 </style>

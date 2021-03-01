@@ -36,7 +36,7 @@ export default {
     },
     data(){
         return {
-            orders: null,
+            orders: [],
             currentPage: 1,
             totalItems: null,
             totalPages: null

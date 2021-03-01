@@ -10,7 +10,7 @@
                     <img class='category-image' :src="category.image" :alt="category.name">
                 </div>
                 <p>{{ category.name }}</p>
-                <div @click="deleteCategory(category.id)">X</div>
+                <div class="btn btn-danger" @click="deleteCategory(category.id)">Delete</div>
             </div>
         </div>
         <Pagination :currentPage="currentPage" :totalPages="totalPages" @setCurrentPage="setCurrentPage"></Pagination>
@@ -28,7 +28,7 @@ export default {
     },
     data() {
         return {
-            categories: null,
+            categories: [],
             currentPage: 1,
             totalItems: null,
             totalPages: null
@@ -43,8 +43,7 @@ export default {
             this.totalPages = response.data.totalPages
         },
         async deleteCategory(categoryId){
-            console.log('hi')
-            let response = await axios.post("/deleteCategory", { categoryId: categoryId })
+            let response = await axios.post("/deleteCategory", { categoryId })
 
             console.log(response)
         },
@@ -89,5 +88,9 @@ export default {
     display: block;
     max-height: 100%;
     max-width: 100%;
+}
+.btn {
+    margin-left: auto;
+    width: 100px;
 }
 </style>

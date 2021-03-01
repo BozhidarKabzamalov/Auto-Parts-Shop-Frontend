@@ -10,6 +10,7 @@
                     <img class='product-image' :src="product.image" :alt="product.name">
                 </div>
                 <p>{{ product.name }}</p>
+                <div class="btn btn-danger" @click="deleteProduct(product.id)">Delete</div>
             </div>
         </div>
         <Pagination :currentPage="currentPage" :totalPages="totalPages" @setCurrentPage="setCurrentPage"></Pagination>
@@ -27,7 +28,7 @@ export default {
     },
     data(){
         return {
-            products: null,
+            products: [],
             currentPage: 1,
             totalItems: null,
             totalPages: null
@@ -40,6 +41,11 @@ export default {
             this.products = response.data.products
             this.totalItems = response.data.totalItems
             this.totalPages = response.data.totalPages
+        },
+        async deleteProduct(productId){
+            let response = await axios.post("/deleteProduct", { productId })
+
+            console.log(response)
         },
         setCurrentPage(page){
             this.currentPage = page
@@ -59,7 +65,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="css" scoped>
 .column-title {
     margin-bottom: 0px;
 }
@@ -83,11 +89,8 @@ export default {
     max-height: 100%;
     max-width: 100%;
 }
-.column-title {
-    display: flex;
-    align-items: center;
-}
-.column-title > p {
-    margin-right: 10px;
+.btn {
+    margin-left: auto;
+    width: 100px;
 }
 </style>

@@ -71,12 +71,23 @@ body {
 .btn-secondary:hover {
     background-color: #677bc4;
 }
+.btn-danger {
+    background-color: #dc3545
+}
+.btn-danger:hover {
+    background-color: #c82333;
+}
 .column-title {
+    display: flex;
+    align-items: center;
     padding: 20px 0;
     border-bottom: 1px solid #9a9a9a;
     font-size: 18px;
     font-weight: 700;
     margin-bottom: 20px;
+}
+.column-title > p {
+    margin-right: 10px;
 }
 .input-container {
     display: flex;
