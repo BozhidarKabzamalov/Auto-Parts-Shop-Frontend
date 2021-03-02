@@ -1,27 +1,29 @@
 <template lang="html">
     <div class="admin-orders">
         <h1 class="column-title">Поръчки</h1>
-        <div class="order-information">
-            <p class="order-id">№</p>
-            <p class="order-name">Име</p>
-            <p class="order-phone-number">Телефон</p>
-            <p class="order-total-price">Цена</p>
+        <div v-if="orders.length">
+            <div class="order-information">
+                <p class="order-id">№</p>
+                <p class="order-name">Име</p>
+                <p class="order-phone-number">Телефон</p>
+                <p class="order-total-price">Цена</p>
+            </div>
+            <div class="order" v-for="order in orders" @click="goToOrder(order)">
+                <div class="order-id">
+                    <p>{{ order.id }}</p>
+                </div>
+                <div class="order-name">
+                    <p>{{ order.firstName }} {{ order.lastName }}</p>
+                </div>
+                <div class="order-phone-number">
+                    <p>{{ order.phoneNumber }}</p>
+                </div>
+                <div class="order-total-price">
+                    <p>{{ order.totalPrice }} лв</p>
+                </div>
+            </div>
+            <Pagination :currentPage="currentPage" :totalPages="totalPages" @setCurrentPage="setCurrentPage"></Pagination>
         </div>
-        <div class="order" v-for="order in orders" @click="goToOrder(order)">
-            <div class="order-id">
-                <p>{{ order.id }}</p>
-            </div>
-            <div class="order-name">
-                <p>{{ order.firstName }} {{ order.lastName }}</p>
-            </div>
-            <div class="order-phone-number">
-                <p>{{ order.phoneNumber }}</p>
-            </div>
-            <div class="order-total-price">
-                <p>{{ order.totalPrice }} лв</p>
-            </div>
-        </div>
-        <Pagination :currentPage="currentPage" :totalPages="totalPages" @setCurrentPage="setCurrentPage"></Pagination>
     </div>
 </template>
 

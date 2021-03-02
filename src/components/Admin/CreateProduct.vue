@@ -2,22 +2,22 @@
     <div class="create-product">
         <h1 class="column-title">Добави Продукт</h1>
         <div class="input-container">
-            <input type="text" v-model="product.name" placeholder="Име">
+            <input :class="{ 'validation-error': $v.product.name.$error }" type="text" v-model="product.name" placeholder="Име">
         </div>
         <div class="input-container">
-            <input type="text" v-model="product.description" placeholder="Описание">
+            <input :class="{ 'validation-error': $v.product.description.$error }" type="text" v-model="product.description" placeholder="Описание">
         </div>
         <div class="input-container">
-            <input type="text" v-model="product.price" placeholder="Цена">
+            <input :class="{ 'validation-error': $v.product.price.$error }" type="text" v-model="product.price" placeholder="Цена">
         </div>
         <div class="input-container">
-            <input type="text" v-model="product.manufacturer" placeholder="Производител">
+            <input :class="{ 'validation-error': $v.product.manufacturer.$error }" type="text" v-model="product.manufacturer" placeholder="Производител">
         </div>
         <div class="input-container">
-            <input type="text" v-model="product.serialNumber" placeholder="Сериен номер">
+            <input :class="{ 'validation-error': $v.product.serialNumber.$error }" type="text" v-model="product.serialNumber" placeholder="Сериен номер">
         </div>
         <div class="input-container relative-container">
-            <input type="text" v-model="brandSearch" placeholder="Принадлежи на марка">
+            <input :class="{ 'validation-error': $v.product.brands.$error }" type="text" v-model="brandSearch" placeholder="Принадлежи на марка">
             <div class="absolute-container" v-if="brands.length">
                 <div class="absolute-container-element" v-for="brand in brands" @click="addProductBrand(brand)">{{ brand.name }}</div>
             </div>
@@ -28,7 +28,7 @@
             </div>
         </div>
         <div class="input-container relative-container">
-            <input type="text" v-model="modelSearch" placeholder="Принадлежи на модел">
+            <input :class="{ 'validation-error': $v.product.models.$error }" type="text" v-model="modelSearch" placeholder="Принадлежи на модел">
             <div class="absolute-container" v-if="models.length">
                 <div class="absolute-container-element" v-for="model in models" @click="addProductModel(model)">{{ model.name }}</div>
             </div>
@@ -39,13 +39,13 @@
             </div>
         </div>
         <div class="input-container">
-            <select v-model="product.categoryId">
+            <select :class="{ 'validation-error': $v.product.categoryId.$error }" v-model="product.categoryId">
                 <option disabled value="">Категория</option>
                 <option v-for='category in categories' :value="category.id">{{ category.name }}</option>
             </select>
         </div>
         <div class="input-container">
-            <input type="file" name="image" @change="setProductImage($event)">
+            <input :class="{ 'validation-error': $v.product.image.$error }" type="file" name="image" @change="setProductImage($event)">
         </div>
         <div class="btn btn-primary" @click="createProduct">Създай</div>
     </div>
@@ -54,6 +54,7 @@
 <script>
 import axios from "axios"
 import router from '../../router'
+import { required, minLength, maxLength } from 'vuelidate/lib/validators'
 
 export default {
     data(){
@@ -76,22 +77,71 @@ export default {
             brands: []
         }
     },
+    validations: {
+        product: {
+            name: {
+                required,
+                minLength: minLength(1),
+                maxLength: maxLength(255)
+            },
+            description: {
+                required,
+                minLength: minLength(1),
+                maxLength: maxLength(255)
+            },
+            price: {
+                required,
+                minLength: minLength(1),
+                maxLength: maxLength(255)
+            },
+            manufacturer: {
+                required,
+                minLength: minLength(1),
+                maxLength: maxLength(255)
+            },
+            serialNumber: {
+                required,
+                minLength: minLength(1),
+                maxLength: maxLength(255)
+            },
+            image: {
+                required
+            },
+            categoryId: {
+                required
+            },
+            brands: {
+                required
+            },
+            models: {
+                required
+            },
+        }
+    },
     methods: {
         async createProduct(){
-            let formData = new FormData();
-            formData.append("name", this.product.name)
-            formData.append("description", this.product.description)
-            formData.append("price", this.product.price)
-            formData.append("manufacturer", this.product.manufacturer)
-            formData.append("serialNumber", this.product.serialNumber)
-            formData.append("image", this.product.image)
-            formData.append("categoryId", this.product.categoryId)
-            formData.append("brands", JSON.stringify(this.productModelsIds))
-            formData.append("models", JSON.stringify(this.productModelsIds))
+            this.$v.$touch()
 
-            let response = await axios.post("/createProduct", formData)
+            if (!this.$v.$invalid) {
+                try {
+                    let formData = new FormData();
+                    formData.append("name", this.product.name)
+                    formData.append("description", this.product.description)
+                    formData.append("price", this.product.price)
+                    formData.append("manufacturer", this.product.manufacturer)
+                    formData.append("serialNumber", this.product.serialNumber)
+                    formData.append("image", this.product.image)
+                    formData.append("categoryId", this.product.categoryId)
+                    formData.append("brands", JSON.stringify(this.productModelsIds))
+                    formData.append("models", JSON.stringify(this.productModelsIds))
 
-            router.push({ name: "adminProducts" })
+                    let response = await axios.post("/createProduct", formData)
+
+                    router.push({ name: "adminProducts" })
+                } catch (e) {
+                    console.log(e)
+                }
+            }
         },
         setProductImage(event){
             this.product.image = event.target.files[0]
@@ -115,19 +165,31 @@ export default {
             this.product.brands.splice(index, 1)
         },
         async getCategories(){
-            let response = await axios.get('/categories')
+            try {
+                let response = await axios.get('/categories')
 
-            this.categories = response.data.categories
+                this.categories = response.data.categories
+            } catch (e) {
+                console.log(e)
+            }
         },
         async getModelsByName(){
-            let response = await axios.get('/models/' + this.modelSearch)
+            try {
+                let response = await axios.get('/models/' + this.modelSearch)
 
-            this.models = response.data.models
+                this.models = response.data.models
+            } catch (e) {
+                console.log(e)
+            }
         },
         async getBrandsByName(){
-            let response = await axios.get('/brands/' + this.brandSearch)
+            try {
+                let response = await axios.get('/brands/' + this.brandSearch)
 
-            this.brands = response.data.brands
+                this.brands = response.data.brands
+            } catch (e) {
+                console.log(e)
+            }
         }
     },
     computed: {

@@ -5,15 +5,17 @@
         </div>
         <div class="column">
             <h1 class="column-title products-title">Нови продукти</h1>
-            <div class="product-information">
-                <p class="product-image"></p>
-                <p class="product-name">Име</p>
-                <p class="product-manufacturer">Производител</p>
-                <p class="product-serial-number">Сериен №</p>
-                <p class="product-price">Цена</p>
+            <div v-if="products.length">
+                <div class="product-information">
+                    <p class="product-image"></p>
+                    <p class="product-name">Име</p>
+                    <p class="product-manufacturer">Производител</p>
+                    <p class="product-serial-number">Сериен №</p>
+                    <p class="product-price">Цена</p>
+                </div>
+                <Product v-for='product in products' :product='product'></Product>
+                <Pagination :currentPage="currentPage" :totalPages="totalPages" @setCurrentPage="setCurrentPage"></Pagination>
             </div>
-            <Product v-for='product in products' :product='product'></Product>
-            <Pagination :currentPage="currentPage" :totalPages="totalPages" @setCurrentPage="setCurrentPage"></Pagination>
         </div>
     </div>
 </template>
@@ -35,7 +37,7 @@ export default {
             model: this.$route.query.model,
             categoryId: this.$route.query.categoryId,
             currentPage: 1,
-            products: null,
+            products: [],
             totalItems: null,
             totalPages: null,
         }

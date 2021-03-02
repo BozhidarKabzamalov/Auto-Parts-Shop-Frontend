@@ -122,17 +122,11 @@ body {
     border: 1px solid #000;
     color: #3e3e3e;
 }
-.validation-error {
-    border: 1px solid #f79483;
-}
-.validation-error:hover {
-    border: 1px solid #f79483;
-}
-.validation-error:focus {
-    border: 1px solid #f79483;
+.validation-error, .validation-error:hover, .validation-error:focus {
+    border: 1px solid #f79483 !important;
 }
 .create-button {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     border: 1px solid #999;
     padding: 5px;

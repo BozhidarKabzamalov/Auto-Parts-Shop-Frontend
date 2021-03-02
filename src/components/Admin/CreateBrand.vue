@@ -4,7 +4,7 @@
         <div class="input-container">
             <input :class="{ 'validation-error': $v.brand.name.$error }" type="text" v-model="brand.name" placeholder="Име">
         </div>
-        <div class="btn btn-primary" @click="createBrand">Създай</div>
+        <div class="btn btn-primary" @click="createBrand()">Създай</div>
     </div>
 </template>
 
@@ -35,6 +35,7 @@ export default {
             this.$v.$touch()
 
             if (!this.$v.$invalid) {
+                console.log('valid')
                 try {
                     let response = await axios.post("/createBrand", this.brand)
 
