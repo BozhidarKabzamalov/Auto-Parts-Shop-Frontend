@@ -8,7 +8,7 @@
             <input :class="{ 'validation-error': $v.product.description.$error }" type="text" v-model="product.description" placeholder="Описание">
         </div>
         <div class="input-container">
-            <input :class="{ 'validation-error': $v.product.price.$error }" type="text" v-model="product.price" placeholder="Цена">
+            <input :class="{ 'validation-error': $v.product.price.$error }" type="number" min="1" max="9999" v-model="product.price" placeholder="Цена">
         </div>
         <div class="input-container">
             <input :class="{ 'validation-error': $v.product.manufacturer.$error }" type="text" v-model="product.manufacturer" placeholder="Производител">
@@ -54,7 +54,7 @@
 <script>
 import axios from "axios"
 import router from '../../router'
-import { required, minLength, maxLength } from 'vuelidate/lib/validators'
+import { required, minLength, maxLength, integer } from 'vuelidate/lib/validators'
 
 export default {
     data(){
@@ -108,13 +108,18 @@ export default {
                 required
             },
             categoryId: {
-                required
+                required,
+                integer
             },
             brands: {
-                required
+                required,
+                minLength: minLength(1),
+                maxLength: maxLength(99)
             },
             models: {
-                required
+                required,
+                minLength: minLength(1),
+                maxLength: maxLength(99)
             },
         }
     },

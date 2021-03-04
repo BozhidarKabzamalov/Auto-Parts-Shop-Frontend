@@ -30,7 +30,7 @@
 <script>
 import axios from "axios"
 import router from '../../router'
-import { required, minLength, maxLength } from 'vuelidate/lib/validators'
+import { required, minLength, maxLength, integer, minValue } from 'vuelidate/lib/validators'
 
 export default {
     data(){
@@ -59,7 +59,9 @@ export default {
                 required
             },
             brandId: {
-                required
+                required,
+                integer,
+                minValue: minValue(0)
             }
         }
     },

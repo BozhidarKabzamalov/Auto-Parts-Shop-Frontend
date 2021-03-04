@@ -24,7 +24,7 @@
 <script>
 import axios from 'axios'
 import router from '../router'
-import { required, minLength, maxLength } from 'vuelidate/lib/validators'
+import { required, minLength, maxLength, minValue, maxValue, integer } from 'vuelidate/lib/validators'
 
 export default {
     data(){
@@ -48,7 +48,10 @@ export default {
             maxLength: maxLength(255)
         },
         selectedYear: {
-            required
+            required,
+            minValue: minValue(1),
+            maxValue: maxValue(9999),
+            integer
         }
     },
     methods: {

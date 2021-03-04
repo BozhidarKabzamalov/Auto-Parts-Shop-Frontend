@@ -56,7 +56,7 @@
 <script>
 import axios from 'axios'
 import router from '../../router'
-import { required, minLength, maxLength, email } from 'vuelidate/lib/validators'
+import { required, minLength, maxLength, email, between, integer } from 'vuelidate/lib/validators'
 
 export default {
     data(){
@@ -102,8 +102,8 @@ export default {
             },
             zipCode: {
                 required,
-                minLength: minLength(1),
-                maxLength: maxLength(255)
+                integer,
+                between: between(0, 9999)
             },
             streetAddress: {
                 required,
