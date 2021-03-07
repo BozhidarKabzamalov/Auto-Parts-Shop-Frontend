@@ -6,8 +6,14 @@
         <p class="product-name">{{ product.name }}</p>
         <p class="product-manufacturer">{{ product.manufacturer }}</p>
         <p class="product-serial-number">{{ product.serialNumber }}</p>
-        <p class="product-price">{{ product.price }} лв</p>
-        <p @click="addToCart">+</p>
+        <div class="product-price">
+            <div class="product-price-discount">
+                <p :class="{ discounted: discounted }">{{ product.price }} лв</p>
+                <p class="discount" v-if="discounted">-{{ product.discount }}%</p>
+            </div>
+            <p class="discounted-price" v-if="discounted">{{ discountPrice }} лв</p>
+        </div>
+        <p @click="addToCart()">X</p>
     </div>
 </template>
 
@@ -17,6 +23,14 @@ export default {
     methods: {
         addToCart() {
             this.$store.dispatch("addCartItem", this.product);
+        }
+    },
+    computed: {
+        discounted(){
+            return this.product.discount !== 0
+        },
+        discountPrice(){
+            return this.product.price - ( this.product.price * ( this.product.discount / 100 ))
         }
     }
 }
@@ -55,7 +69,33 @@ export default {
     margin-right: 15px;
 }
 .product-price {
-    width: 80px;
+    width: 100px;
+}
+.product-price-discount {
+    display: flex;
+    margin-bottom: 5px;
+}
+.discounted {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: line-through;
+    margin-right: 5px;
+}
+.discount {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px 5px;
+    font-weight: 500;
+    background-color: #f4770b;
+    border-radius: 5px;
+    color: #ffffff;
+}
+.discounted-price {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
 }
 
 @media (max-width: 1080px) {

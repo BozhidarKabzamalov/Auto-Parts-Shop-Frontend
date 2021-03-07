@@ -37,6 +37,9 @@ const cart = {
 
                 state.cart.splice(index, 1)
             }
+        },
+        CLEAR_CART(state){
+            state.cart = []
         }
     },
     actions: {
@@ -54,6 +57,10 @@ const cart = {
         },
         saveCartToLocalStorage(context){
             localStorage.setItem('cart', JSON.stringify(context.state.cart))
+        },
+        clearCart(context){
+            context.commit("CLEAR_CART")
+            localStorage.removeItem('cart')
         }
     },
     getters: {
@@ -70,7 +77,13 @@ const cart = {
             let price = 0
 
             state.cart.forEach(item => {
-                price += item.quantity * item.price
+                if (item.discount === 0) {
+                    price += item.quantity * item.price
+                } else {
+                    let discountPrice = item.price - ( item.price * item.discount / 100 )
+                    price += item.quantity * discountPrice
+                }
+
             });
 
             return price

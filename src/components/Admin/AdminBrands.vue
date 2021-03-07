@@ -4,15 +4,12 @@
             <p>Марки</p>
             <div class="create-button" @click="goToCreateBrand()">Добави</div>
         </div>
-        <div class="brands" v-if="brands.length">
+        <div class="brands">
             <div class="brand" v-for="brand in brands">
                 <p>{{ brand.name }}</p>
-                <div class="btn btn-danger" @click="deleteBrand(brand.id)">Delete</div>
+                <div class="btn btn-danger" @click="deleteBrand(brand)">Delete</div>
             </div>
             <Pagination :currentPage="currentPage" :totalPages="totalPages" @setCurrentPage="setCurrentPage"></Pagination>
-        </div>
-        <div v-else>
-            <p>No brands</p>
         </div>
     </div>
 </template>
@@ -46,10 +43,15 @@ export default {
                 console.log(e)
             }
         },
-        async deleteBrand(brandId){
-            let response = await axios.post('/deleteBrand', { brandId })
+        async deleteBrand(brand){
+            try {
+                let response = await axios.post('/deleteBrand', { brandId: brand.id })
 
-            console.log(response)
+                let index = this.brands.indexOf(brand)
+                this.brands.splice(index, 1)
+            } catch (e) {
+                console.log(e)
+            }
         },
         setCurrentPage(page){
             this.currentPage = page

@@ -11,6 +11,9 @@
             <input :class="{ 'validation-error': $v.product.price.$error }" type="number" min="1" max="9999" v-model="product.price" placeholder="Цена">
         </div>
         <div class="input-container">
+            <input :class="{ 'validation-error': $v.product.discount.$error }" type="number" min="1" max="100" v-model="product.discount" placeholder="Отстъпка">
+        </div>
+        <div class="input-container">
             <input :class="{ 'validation-error': $v.product.manufacturer.$error }" type="text" v-model="product.manufacturer" placeholder="Производител">
         </div>
         <div class="input-container">
@@ -54,7 +57,7 @@
 <script>
 import axios from "axios"
 import router from '../../router'
-import { required, minLength, maxLength, integer } from 'vuelidate/lib/validators'
+import { required, minLength, maxLength, integer, minValue, maxValue } from 'vuelidate/lib/validators'
 
 export default {
     data(){
@@ -63,6 +66,7 @@ export default {
                 name: "",
                 description: "",
                 price: "",
+                discount: "",
                 manufacturer: "",
                 serialNumber: "",
                 image: "",
@@ -93,6 +97,10 @@ export default {
                 required,
                 minLength: minLength(1),
                 maxLength: maxLength(255)
+            },
+            discount: {
+                minLength: minValue(0),
+                maxLength: maxValue(100)
             },
             manufacturer: {
                 required,
@@ -133,6 +141,7 @@ export default {
                     formData.append("name", this.product.name)
                     formData.append("description", this.product.description)
                     formData.append("price", this.product.price)
+                    formData.append("discount", this.product.discount)
                     formData.append("manufacturer", this.product.manufacturer)
                     formData.append("serialNumber", this.product.serialNumber)
                     formData.append("image", this.product.image)

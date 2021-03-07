@@ -46,11 +46,15 @@ export default {
     },
     methods: {
         async getOrders(){
-            let response = await axios.get('/orders?page=' + this.currentPage)
+            try {
+                let response = await axios.get('/orders?page=' + this.currentPage)
 
-            this.orders = response.data.orders
-            this.totalItems = response.data.totalItems
-            this.totalPages = response.data.totalPages
+                this.orders = response.data.orders
+                this.totalItems = response.data.totalItems
+                this.totalPages = response.data.totalPages
+            } catch (e) {
+                console.log(e)
+            }
         },
         setCurrentPage(page){
             this.currentPage = page

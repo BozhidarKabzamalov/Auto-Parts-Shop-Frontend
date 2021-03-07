@@ -108,7 +108,7 @@ export default {
     margin-right: 10px;
 }
 .product-price {
-    width: 80px;
+    width: 100px;
 }
 
 @media (max-width: 1450px) {

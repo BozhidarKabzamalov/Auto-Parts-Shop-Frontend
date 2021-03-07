@@ -10,7 +10,7 @@
                     <img class='category-image' :src="category.image" :alt="category.name">
                 </div>
                 <p>{{ category.name }}</p>
-                <div class="btn btn-danger" @click="deleteCategory(category.id)">Delete</div>
+                <div class="btn btn-danger" @click="deleteCategory(category)">Delete</div>
             </div>
         </div>
         <Pagination :currentPage="currentPage" :totalPages="totalPages" @setCurrentPage="setCurrentPage"></Pagination>
@@ -36,16 +36,25 @@ export default {
     },
     methods: {
         async getCategories(){
-            let response = await axios.get("/categories?page=" + this.currentPage)
+            try {
+                let response = await axios.get("/categories?page=" + this.currentPage)
 
-            this.categories = response.data.categories
-            this.totalItems = response.data.totalItems
-            this.totalPages = response.data.totalPages
+                this.categories = response.data.categories
+                this.totalItems = response.data.totalItems
+                this.totalPages = response.data.totalPages
+            } catch (e) {
+                console.log(e)
+            }
         },
-        async deleteCategory(categoryId){
-            let response = await axios.post("/deleteCategory", { categoryId })
+        async deleteCategory(category){
+            try {
+                let response = await axios.post("/deleteCategory", { categoryId: category.id })
 
-            console.log(response)
+                let index = this.categories.indexOf(category)
+                this.categories.splice(index, 1)
+            } catch (e) {
+                console.log(e)
+            }
         },
         setCurrentPage(page){
             this.currentPage = page

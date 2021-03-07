@@ -10,7 +10,7 @@
                     <img class='product-image' :src="product.image" :alt="product.name">
                 </div>
                 <p>{{ product.name }}</p>
-                <div class="btn btn-danger" @click="deleteProduct(product.id)">Delete</div>
+                <div class="btn btn-danger" @click="deleteProduct(product)">Delete</div>
             </div>
         </div>
         <Pagination :currentPage="currentPage" :totalPages="totalPages" @setCurrentPage="setCurrentPage"></Pagination>
@@ -36,16 +36,25 @@ export default {
     },
     methods: {
         async getProducts(){
-            let response = await axios.get("/products?page=" + this.currentPage)
+            try {
+                let response = await axios.get("/products?page=" + this.currentPage)
 
-            this.products = response.data.products
-            this.totalItems = response.data.totalItems
-            this.totalPages = response.data.totalPages
+                this.products = response.data.products
+                this.totalItems = response.data.totalItems
+                this.totalPages = response.data.totalPages
+            } catch (e) {
+                console.log(e)
+            }
         },
-        async deleteProduct(productId){
-            let response = await axios.post("/deleteProduct", { productId })
-
-            console.log(response)
+        async deleteProduct(product){
+            try {
+                let response = await axios.post("/deleteProduct", { productId: product.id })
+                
+                let index = this.products.indexOf(product)
+                this.products.splice(index, 1)
+            } catch (e) {
+                console.log(e)
+            }
         },
         setCurrentPage(page){
             this.currentPage = page

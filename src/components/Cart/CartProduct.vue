@@ -10,7 +10,13 @@
             <input class="product-quantity" type="number" name="productQuantity" min="0" max="999" @change="updateItemQuantity" :value="product.quantity" required>
             <div class="plus-button" @click="addToCart">+</div>
         </div>
-        <p class="product-price">{{ product.price }} лв</p>
+        <div class="product-price">
+            <div class="product-price-discount">
+                <p :class="{ discounted: discounted }">{{ product.price }} лв</p>
+                <p class="discount" v-if="discounted">-{{ product.discount }}%</p>
+            </div>
+            <p class="discounted-price" v-if="discounted">{{ discountPrice }} лв</p>
+        </div>
     </div>
 </template>
 
@@ -36,6 +42,14 @@ export default {
         },
         removeFromCart(){
             this.$store.dispatch("removeCartItem", this.product)
+        }
+    },
+    computed: {
+        discounted(){
+            return this.product.discount !== 0
+        },
+        discountPrice(){
+            return this.product.price - ( this.product.price * ( this.product.discount / 100 ))
         }
     }
 }
@@ -74,7 +88,7 @@ export default {
     margin-right: 15px;
 }
 .product-price {
-    width: 80px;
+    width: 100px;
 }
 .product-quantity-container {
     display: flex;
@@ -105,6 +119,32 @@ export default {
 }
 .plus-button:hover, .minus-button:hover {
     border: 1px solid #aaa;
+}
+.product-price-discount {
+    display: flex;
+    margin-bottom: 5px;
+}
+.discounted {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: line-through;
+    margin-right: 5px;
+}
+.discount {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px 5px;
+    font-weight: 500;
+    background-color: #f4770b;
+    border-radius: 5px;
+    color: #ffffff;
+}
+.discounted-price {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
 }
 
 @media (max-width: 1080px) {

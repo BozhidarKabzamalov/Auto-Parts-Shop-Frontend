@@ -64,9 +64,6 @@ export default {
         timestampToDate(timestamp){
             return moment(timestamp).format('L');
         }
-    },
-    mounted(){
-        console.log(this.$route.params.order)
     }
 }
 </script>

@@ -131,6 +131,7 @@ export default {
             if (!this.$v.$invalid) {
                 try {
                     let response = await axios.post('/createOrder', orderInformation)
+                    this.$store.dispatch("clearCart")
                     router.push({ name: 'deliverySummary', params: { orderId: response.data.order.id, orderTotalPrice: response.data.order.totalPrice } })
                 } catch (error) {
                     console.log(error)

@@ -11,7 +11,7 @@
             </select>
         </div>
         <div class="input-container">
-            <select :class="{ 'validation-error': $v.model.manufacturedTo.$error }" v-model="model.manufacturedTo">
+            <select v-model="model.manufacturedTo">
                 <option disabled value="">Произвеждан до</option>
                 <option :value="null">Още в производство</option>
                 <option v-for='year in years'>{{ year }}</option>
@@ -53,9 +53,6 @@ export default {
                 maxLength: maxLength(255)
             },
             manufacturedFrom: {
-                required
-            },
-            manufacturedTo: {
                 required
             },
             brandId: {

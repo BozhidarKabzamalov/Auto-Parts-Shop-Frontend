@@ -35,7 +35,6 @@ export default {
             this.$v.$touch()
 
             if (!this.$v.$invalid) {
-                console.log('valid')
                 try {
                     let response = await axios.post("/createBrand", this.brand)
 
