@@ -1,17 +1,16 @@
 <template lang="html">
-    <div class="login wrapper">
+    <div class="login">
         <div class="login-container">
-            <p>Welcome back!</p>
             <form @submit.prevent="login" novalidate>
                 <div class="margin-bottom-20">
-                    <p>Username</p>
+                    <p>Потребителско Име</p>
                     <input v-model='username' type='email'>
                 </div>
                 <div class="margin-bottom-20">
-                    <p>Password</p>
+                    <p>Парола</p>
                     <input v-model='password' type="password">
                 </div>
-                <button class='margin-bottom-20' type="submit" name="button">Continue</button>
+                <button class='btn btn-primary' type="submit" name="button">Вход</button>
             </form>
         </div>
     </div>
@@ -51,25 +50,19 @@ export default {
     align-items: center;
 }
 .login-container {
-    background-color: #36393f;
     width: 500px;
     padding: 40px;
     border-radius: 5px;
-    box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
-}
-.login-container > p {
-    text-align: center;
-    font-weight: 700;
-    color: #ffffff;
-    font-size: 24px;
-    line-height: 30px;
-    margin-bottom: 20px;
+    border: 1px solid #9a9a9a;
 }
 .margin-bottom-20 {
     margin-bottom: 20px;
 }
+.margin-bottom-20:last-child {
+    margin-bottom: 0px;
+}
 .margin-bottom-20 > p {
-    color: #8e9297;
+    color: #333;
     margin-bottom: 10px;
     font-size: 12px;
     line-height: 16px;
@@ -82,29 +75,15 @@ input {
     height: 40px;
     padding: 10px;
     color: #dcddde;
-    background-color: rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(0, 0, 0, 0.3);
-    border-radius: 3px;
-}
-input:hover {
-    border: 1px solid rgba(0, 0, 0, 0.5);
+    font-size: 13px;
+    color: #606060;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #999;
+    outline: 0;
 }
 input:focus {
-    outline: 1px solid #7289da;
-}
-button {
-    cursor: pointer;
-    color: #ffffff;
-    background-color: #7289da;
-    font-size: 16px;
-    line-height: 24px;
-    width: 100%;
-    height: 40px;
-    border-radius: 3px;
-    outline: none;
-    border: none;
-}
-button:hover {
-    background-color: #677bc4;
+    border-color: #000;
 }
 </style>

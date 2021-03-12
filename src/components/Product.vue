@@ -1,5 +1,5 @@
 <template lang="html">
-    <div class='product'>
+    <div class='product' @click="goToProductPage()">
         <div class="product-image-container">
             <img class='product-image' :src="product.image" :alt="product.name">
         </div>
@@ -13,16 +13,20 @@
             </div>
             <p class="discounted-price" v-if="discounted">{{ discountPrice }} лв</p>
         </div>
-        <p @click="addToCart()">X</p>
     </div>
 </template>
 
 <script>
+import router from "../router"
+
 export default {
     props: ['product'],
     methods: {
         addToCart() {
             this.$store.dispatch("addCartItem", this.product);
+        },
+        goToProductPage(){
+            router.push({ name: "specificProduct", params: { productName: this.product.name, productId: this.product.id, product: this.product }})
         }
     },
     computed: {

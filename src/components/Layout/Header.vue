@@ -43,4 +43,7 @@
         font-weight: 500;
         font-size: 15px;
     }
+    .nav-ul li:last-child {
+        margin-left: auto;
+    }
 </style>

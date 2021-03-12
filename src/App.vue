@@ -58,6 +58,8 @@ body {
     padding: 10px 0;
     cursor: pointer;
     user-select: none;
+    outline: none;
+    border: none;
 }
 .btn-primary {
     background-color: #46b05a;

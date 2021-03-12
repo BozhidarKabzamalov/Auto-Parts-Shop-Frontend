@@ -19,6 +19,7 @@ import CreateProduct from '../components/Admin/CreateProduct.vue'
 import CreateCategory from '../components/Admin/CreateCategory.vue'
 import CreateBrand from '../components/Admin/CreateBrand.vue'
 import CreateModel from '../components/Admin/CreateModel.vue'
+import NotFound from '../views/404.vue'
 import Meta from 'vue-meta'
 import store from "@/store/store.js";
 
@@ -32,7 +33,7 @@ const routes = [
         component: Home
     },
     {
-        path: '/product/:productName',
+        path: '/product/:productName/:productId',
         name: 'specificProduct',
         component: SpecificProduct
     },
@@ -65,7 +66,14 @@ const routes = [
     {
         path: '/login',
         name: 'login',
-        component: Login
+        component: Login,
+        beforeEnter: (to, from, next) => {
+            if (store.getters.authenticated) {
+                next({ name: "adminOrders" })
+            } else {
+                next()
+            }
+        }
     },
     {
         path: "/admin",
@@ -121,8 +129,24 @@ const routes = [
                 name: "createModel",
                 component: CreateModel
             },
-        ]
-    }
+        ],
+        beforeEnter: (to, from, next) => {
+            if (!store.getters.authenticated) {
+                next({ name: "login" })
+            } else {
+                next()
+            }
+        }
+    },
+    {
+        path: "/404",
+        name: "404",
+        component: NotFound
+    },
+    {
+        path: '*',
+        redirect: '/404'
+    },
 ]
 
 const router = new VueRouter({
