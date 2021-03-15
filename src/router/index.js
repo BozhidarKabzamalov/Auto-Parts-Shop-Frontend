@@ -18,6 +18,7 @@ import CartDeliverySummary from '../components/Cart/CartDeliverySummary.vue'
 import CreateProduct from '../components/Admin/CreateProduct.vue'
 import CreateCategory from '../components/Admin/CreateCategory.vue'
 import CreateBrand from '../components/Admin/CreateBrand.vue'
+import UpdateBrand from '../components/Admin/UpdateBrand.vue'
 import CreateModel from '../components/Admin/CreateModel.vue'
 import NotFound from '../views/404.vue'
 import Meta from 'vue-meta'
@@ -67,11 +68,13 @@ const routes = [
         path: '/login',
         name: 'login',
         component: Login,
-        beforeEnter: (to, from, next) => {
+        beforeEnter: async (to, from, next) => {
+            await store.dispatch('autoLogin');
+
             if (store.getters.authenticated) {
                 next({ name: "adminOrders" })
             } else {
-                next()
+                next();
             }
         }
     },
@@ -120,6 +123,11 @@ const routes = [
                 component: CreateBrand
             },
             {
+                path: "brands/updateBrand",
+                name: "updateBrand",
+                component: UpdateBrand
+            },
+            {
                 path: "models",
                 name: "adminModels",
                 component: AdminModels
@@ -130,11 +138,13 @@ const routes = [
                 component: CreateModel
             },
         ],
-        beforeEnter: (to, from, next) => {
-            if (!store.getters.authenticated) {
-                next({ name: "login" })
+        beforeEnter: async (to, from, next) => {
+            await store.dispatch('autoLogin');
+
+            if (store.getters.authenticated) {
+                next();
             } else {
-                next()
+                next({ name: "login" })
             }
         }
     },
