@@ -116,6 +116,7 @@ export default {
     height: 38px;
     border: 1px solid #ddd;
     background-color: #ffffff;
+    user-select: none;
 }
 .plus-button:hover, .minus-button:hover {
     border: 1px solid #aaa;

@@ -16,10 +16,13 @@ import CartProductsList from '../components/Cart/CartProductsList.vue'
 import CartDeliveryInformation from '../components/Cart/CartDeliveryInformation.vue'
 import CartDeliverySummary from '../components/Cart/CartDeliverySummary.vue'
 import CreateProduct from '../components/Admin/CreateProduct.vue'
+import UpdateProduct from '../components/Admin/UpdateProduct.vue'
 import CreateCategory from '../components/Admin/CreateCategory.vue'
+import UpdateCategory from '../components/Admin/UpdateCategory.vue'
 import CreateBrand from '../components/Admin/CreateBrand.vue'
 import UpdateBrand from '../components/Admin/UpdateBrand.vue'
 import CreateModel from '../components/Admin/CreateModel.vue'
+import UpdateModel from '../components/Admin/UpdateModel.vue'
 import NotFound from '../views/404.vue'
 import Meta from 'vue-meta'
 import store from "@/store/store.js";
@@ -103,6 +106,11 @@ const routes = [
                 component: CreateProduct
             },
             {
+                path: "products/updateProduct/:productId",
+                name: "updateProduct",
+                component: UpdateProduct
+            },
+            {
                 path: "categories",
                 name: "adminCategories",
                 component: AdminCategories
@@ -111,6 +119,11 @@ const routes = [
                 path: "categories/createCategory",
                 name: "createCategory",
                 component: CreateCategory
+            },
+            {
+                path: "categories/updateCategory/:categoryId",
+                name: "updateCategory",
+                component: UpdateCategory
             },
             {
                 path: "brands",
@@ -123,7 +136,7 @@ const routes = [
                 component: CreateBrand
             },
             {
-                path: "brands/updateBrand",
+                path: "brands/updateBrand/:brandId",
                 name: "updateBrand",
                 component: UpdateBrand
             },
@@ -136,6 +149,11 @@ const routes = [
                 path: "models/createModel",
                 name: "createModel",
                 component: CreateModel
+            },
+            {
+                path: "models/updateModel/:modelId",
+                name: "updateModel",
+                component: UpdateModel
             },
         ],
         beforeEnter: async (to, from, next) => {

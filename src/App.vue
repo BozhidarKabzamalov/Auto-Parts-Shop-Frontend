@@ -41,6 +41,12 @@ body {
 .flex {
     display: flex;
 }
+.justify-center {
+    justify-content: center;
+}
+.align-center {
+    align-items: center;
+}
 .responsive-image {
     width: 100%;
     height: 100%;

@@ -11,6 +11,7 @@
                 </div>
                 <p>{{ product.name }}</p>
                 <div class="btn btn-danger" @click="deleteProduct(product)">Delete</div>
+                <div class="btn btn-secondary" @click="goToUpdateProduct(product)">Update</div>
             </div>
         </div>
         <Pagination :currentPage="currentPage" :totalPages="totalPages" @setCurrentPage="setCurrentPage"></Pagination>
@@ -49,7 +50,7 @@ export default {
         async deleteProduct(product){
             try {
                 let response = await axios.post("/deleteProduct", { productId: product.id })
-                
+
                 let index = this.products.indexOf(product)
                 this.products.splice(index, 1)
             } catch (e) {
@@ -61,6 +62,9 @@ export default {
         },
         goToCreateProduct(){
             router.push({ name: "createProduct" })
+        },
+        goToUpdateProduct(product){
+            router.push({ name: "updateProduct", params: { productId: product.id, product: product } })
         }
     },
     watch: {

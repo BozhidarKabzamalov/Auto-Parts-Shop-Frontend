@@ -11,6 +11,7 @@
                 </div>
                 <p>{{ category.name }}</p>
                 <div class="btn btn-danger" @click="deleteCategory(category)">Delete</div>
+                <div class="btn btn-secondary" @click="goToUpdateCategory(category)">Update</div>
             </div>
         </div>
         <Pagination :currentPage="currentPage" :totalPages="totalPages" @setCurrentPage="setCurrentPage"></Pagination>
@@ -61,6 +62,9 @@ export default {
         },
         goToCreateCategory(){
             router.push({ name: "createCategory" })
+        },
+        goToUpdateCategory(category){
+            router.push({ name: "updateCategory", params: { categoryId: category.id, category: category } })
         }
     },
     watch: {

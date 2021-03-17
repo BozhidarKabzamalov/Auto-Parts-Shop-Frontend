@@ -16,9 +16,8 @@ import { required, minLength, maxLength } from 'vuelidate/lib/validators'
 export default {
     data() {
         return {
-            brand: {
-                name: ""
-            }
+            brandId: this.$route.params.brandId,
+            brand: this.$route.params.brand
         }
     },
     validations: {
@@ -38,12 +37,15 @@ export default {
                 try {
                     let response = await axios.post("/updateBrand", this.brand)
 
-                    router.push({name: "adminBrands"})
+                    router.push({ name: "adminBrands" })
                 } catch (e) {
                     console.log(e)
                 }
             }
         }
+    },
+    mounted(){
+        
     }
 }
 </script>

@@ -8,6 +8,7 @@
             <div class="brand" v-for="brand in brands">
                 <p>{{ brand.name }}</p>
                 <div class="btn btn-danger" @click="deleteBrand(brand)">Delete</div>
+                <div class="btn btn-secondary" @click="goToUpdateBrand(brand)">Update</div>
             </div>
             <Pagination :currentPage="currentPage" :totalPages="totalPages" @setCurrentPage="setCurrentPage"></Pagination>
         </div>
@@ -58,6 +59,9 @@ export default {
         },
         goToCreateBrand(){
             router.push({ name: "createBrand" })
+        },
+        goToUpdateBrand(brand){
+            router.push({ name: "updateBrand", params: { brandId: brand.id, brand: brand } })
         }
     },
     mounted(){

@@ -8,7 +8,7 @@
         <p class="product-serial-number">{{ product.serialNumber }}</p>
         <div class="product-price">
             <div class="product-price-discount">
-                <p :class="{ discounted: discounted }">{{ product.price }} лв</p>
+                <p class="price" :class="{ discounted: discounted }">{{ product.price }} лв</p>
                 <p class="discount" v-if="discounted">-{{ product.discount }}%</p>
             </div>
             <p class="discounted-price" v-if="discounted">{{ discountPrice }} лв</p>
@@ -79,12 +79,16 @@ export default {
     display: flex;
     margin-bottom: 5px;
 }
+.price {
+    font-weight: 700;
+}
 .discounted {
     display: flex;
     justify-content: center;
     align-items: center;
     text-decoration: line-through;
     margin-right: 5px;
+    font-weight: 400;
 }
 .discount {
     display: flex;

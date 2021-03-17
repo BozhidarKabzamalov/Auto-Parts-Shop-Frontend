@@ -71,6 +71,7 @@ export default {
 
 <style lang="css" scoped>
 .column-title {
+    min-height: 68px;
     margin-bottom: 0;
 }
 .order-information {

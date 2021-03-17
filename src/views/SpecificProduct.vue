@@ -7,23 +7,20 @@
                 </div>
             </div>
             <div class="details-column">
-                <h1>{{ product.name }}</h1>
+                <h1 class="product-name">{{ product.name }}</h1>
+                <div class="add-to-cart">
+                    <div class="price-container">
+                        <div class="product-price-discount">
+                            <p class="price" :class="{ discounted: discounted }">{{ product.price }} лв</p>
+                            <p class="discount" v-if="discounted">-{{ product.discount }}%</p>
+                        </div>
+                        <p class="discounted-price" v-if="discounted">{{ discountPrice }} лв</p>
+                    </div>
+                    <div @click="addToCart" class="btn btn-primary">Добави в количката</div>
+                </div>
                 <p>{{ product.description }}</p>
                 <p>{{ product.manufacturer }}</p>
                 <p>{{ product.serialNumber }}</p>
-                <div>
-                    <div class="product-price-discount">
-                        <p :class="{ discounted: discounted }">{{ product.price }} лв</p>
-                        <p class="discount" v-if="discounted">-{{ product.discount }}%</p>
-                    </div>
-                    <p class="discounted-price" v-if="discounted">{{ discountPrice }} лв</p>
-                </div>
-                <div class="product-quantity-container">
-                    <div class="minus-button" @click="updateQuantity('-')">-</div>
-                    <input class="product-quantity" type="number" name="productQuantity" min="1" max="999" @change="updateQuantity($event.target.value)" :value="quantity" required>
-                    <div class="plus-button" @click="updateQuantity('+')">+</div>
-                </div>
-                <div @click="addToCart" class="btn btn-primary">Добави в количката</div>
             </div>
         </div>
     </div>
@@ -40,8 +37,7 @@ export default {
     data(){
         return{
             product: this.$route.params.product,
-            productId: this.$route.params.productId,
-            quantity: 1
+            productId: this.$route.params.productId
         }
     },
     methods:{
@@ -52,27 +48,6 @@ export default {
                 this.product = response.data.product
             } else {
                 router.push({ name: "404" })
-            }
-        },
-        updateQuantity(operation){
-            let isNumber = isNaN(parseInt(operation));
-
-            if (!isNumber){
-                if (operation < 999 && operation > 0) {
-                    this.quantity = operation
-                }
-            } else {
-                if (operation == "+") {
-                    this.quantity++
-                    if (this.quantity > 999) {
-                        this.quantity = 999
-                    }
-                } else {
-                    this.quantity--
-                    if (this.quantity <= 0) {
-                        this.quantity = 1
-                    }
-                }
             }
         },
         addToCart() {
@@ -120,13 +95,29 @@ export default {
     max-height: 100%;
     max-width: 100%;
 }
-.details-column h1 {
+.product-name {
     font-size: 36px;
     font-weight: 600;
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+.add-to-cart {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+.price-container {
+    margin-right: 20px;
+}
+.price {
+    font-weight: 500;
+    font-size: 32px;
 }
 .product-price-discount {
     display: flex;
-    margin-bottom: 5px;
 }
 .discounted {
     display: flex;
@@ -134,6 +125,7 @@ export default {
     align-items: center;
     text-decoration: line-through;
     margin-right: 5px;
+    font-size: 16px;
 }
 .discount {
     display: flex;
@@ -149,36 +141,7 @@ export default {
     display: flex;
     align-items: center;
     font-weight: 700;
-}
-.product-quantity-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 144px;
-    margin-right: 15px;
-}
-.product-quantity {
-    height: 38px;
-    width: 48px;
-    padding: 4px;
-    border: 1px solid #ddd;
-    margin: 0 10px;
-    outline: none;
-}
-.product-quantity:hover, .product-quantity:focus {
-    border: 1px solid #aaa;
-}
-.plus-button, .minus-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 38px;
-    height: 38px;
-    border: 1px solid #ddd;
-    background-color: #ffffff;
-}
-.plus-button:hover, .minus-button:hover {
-    border: 1px solid #aaa;
+    font-size: 32px;
 }
 .btn {
     width: 250px;

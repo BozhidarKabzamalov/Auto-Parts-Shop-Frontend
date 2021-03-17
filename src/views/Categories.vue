@@ -1,5 +1,6 @@
 <template>
     <div class="wrapper">
+        <h1 class="column-title">Категории</h1>
         <div class="categories">
             <div class='category' v-for='category in categories' @click='goToCategory(category)'>
                 <div class="category-image-wrapper">
@@ -61,7 +62,6 @@ export default {
     grid-template-columns: repeat(auto-fill, 240px);
     width: 100%;
     column-gap: 20px;
-    padding-top: 20px;
     justify-content: center;
 }
 .category {

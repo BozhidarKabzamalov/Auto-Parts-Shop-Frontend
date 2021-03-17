@@ -8,6 +8,7 @@
             <div class="model" v-for="model in models">
                 <p>{{ model.name }}</p>
                 <div class="btn btn-danger" @click="deleteModel(model)">Delete</div>
+                <div class="btn btn-secondary" @click="goToUpdateModel(model)">Update</div>
             </div>
         </div>
         <Pagination :currentPage="currentPage" :totalPages="totalPages" @setCurrentPage="setCurrentPage"></Pagination>
@@ -58,6 +59,9 @@ export default {
         },
         goToCreateModel(){
             router.push({ name: "createModel" })
+        },
+        goToUpdateModel(model){
+            router.push({ name: "updateModel", params: { modelId: model.id, model: model } })
         }
     },
     mounted(){
