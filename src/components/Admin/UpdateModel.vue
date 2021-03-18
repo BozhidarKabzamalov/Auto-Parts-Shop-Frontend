@@ -1,6 +1,6 @@
 <template lang="html">
     <div class="create-model">
-        <h1 class="column-title">Добави Модел</h1>
+        <h1 class="column-title">Редактирай Модел</h1>
         <div class="input-container">
             <input :class="{ 'validation-error': $v.model.name.$error }" type="text" v-model="model.name" placeholder="Име">
         </div>
@@ -44,15 +44,10 @@ export default {
     validations: {
         model: {
             name: {
-                required,
                 minLength: minLength(1),
                 maxLength: maxLength(255)
             },
-            manufacturedFrom: {
-                required
-            },
             brandId: {
-                required,
                 integer,
                 minValue: minValue(0)
             }

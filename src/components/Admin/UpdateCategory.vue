@@ -1,6 +1,7 @@
 <template lang="html">
     <div class="create-category">
-        <h1 class="column-title">Добави Категория</h1>
+        <h1 class="column-title">Редактирай Категория</h1>
+        {{ category }}
         <div class="input-container">
             <input :class="{ 'validation-error': $v.category.name.$error }" type="text" v-model="category.name" placeholder="Име">
         </div>
@@ -26,22 +27,18 @@ export default {
     validations: {
         category: {
             name: {
-                required,
                 minLength: minLength(1),
                 maxLength: maxLength(255)
-            },
-            image: {
-                required
             }
         }
     },
     methods: {
         async updateCategory(){
             this.$v.$touch()
-
             if (!this.$v.$invalid) {
                 try {
                     let formData = new FormData();
+                    formData.append("id", this.category.id)
                     formData.append("name", this.category.name)
                     formData.append("image", this.category.image)
 
