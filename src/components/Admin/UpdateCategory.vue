@@ -6,7 +6,7 @@
             <input :class="{ 'validation-error': $v.category.name.$error }" type="text" v-model="category.name" placeholder="Име">
         </div>
         <div class="input-container">
-            <input :class="{ 'validation-error': $v.category.image.$error }" type="file" name="image" @change="setCategoryImage($event)">
+            <input type="file" name="image" @change="setCategoryImage($event)">
         </div>
         <div class="btn btn-primary" @click="updateCategory">Редактирай</div>
     </div>
@@ -27,6 +27,7 @@ export default {
     validations: {
         category: {
             name: {
+                required,
                 minLength: minLength(1),
                 maxLength: maxLength(255)
             }

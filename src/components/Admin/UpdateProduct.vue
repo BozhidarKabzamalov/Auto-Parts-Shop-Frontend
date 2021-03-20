@@ -62,18 +62,8 @@ import { required, minLength, maxLength, integer, minValue, maxValue } from 'vue
 export default {
     data(){
         return {
-            product: {
-                name: "",
-                description: "",
-                price: "",
-                discount: "",
-                manufacturer: "",
-                serialNumber: "",
-                image: "",
-                categoryId: "",
-                brands: [],
-                models: []
-            },
+            productId: this.$route.params.productId,
+            product: this.$route.params.product,
             categories: "",
             modelSearch: "",
             models: [],
@@ -113,21 +103,21 @@ export default {
                 maxLength: maxLength(255)
             },
             image: {
-                required
+                //required
             },
             categoryId: {
                 required,
                 integer
             },
             brands: {
-                required,
+                /*required,
                 minLength: minLength(1),
-                maxLength: maxLength(99)
+                maxLength: maxLength(99)*/
             },
             models: {
-                required,
+                /*required,
                 minLength: minLength(1),
-                maxLength: maxLength(99)
+                maxLength: maxLength(99)*/
             },
         }
     },
@@ -138,6 +128,7 @@ export default {
             if (!this.$v.$invalid) {
                 try {
                     let formData = new FormData();
+                    formData.append("id", this.product.id)
                     formData.append("name", this.product.name)
                     formData.append("description", this.product.description)
                     formData.append("price", this.product.price)
@@ -232,6 +223,7 @@ export default {
     },
     mounted(){
         this.getCategories()
+        console.log(this.$route.params.product)
     }
 }
 </script>

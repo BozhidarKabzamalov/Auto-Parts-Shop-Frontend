@@ -5,7 +5,7 @@
             <input :class="{ 'validation-error': $v.model.name.$error }" type="text" v-model="model.name" placeholder="Име">
         </div>
         <div class="input-container">
-            <select :class="{ 'validation-error': $v.model.manufacturedFrom.$error }" v-model="model.manufacturedFrom">
+            <select  v-model="model.manufacturedFrom">
                 <option disabled value="">Произвеждан от</option>
                 <option v-for='year in years'>{{ year }}</option>
             </select>
@@ -44,10 +44,12 @@ export default {
     validations: {
         model: {
             name: {
+                required,
                 minLength: minLength(1),
                 maxLength: maxLength(255)
             },
             brandId: {
+                required,
                 integer,
                 minValue: minValue(0)
             }
