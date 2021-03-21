@@ -1,5 +1,5 @@
 <template lang="html">
-    <div class="update-brand">
+    <div class="update-brand" v-if="brand">
         <h1 class="column-title">Редактирай Марка</h1>
         <div class="input-container">
             <input :class="{ 'validation-error': $v.brand.name.$error }" type="text" v-model="brand.name" placeholder="Име">
@@ -30,6 +30,15 @@ export default {
         }
     },
     methods: {
+        async getBrand(){
+            let response = await axios.get("/brand/" + this.brandId)
+
+            if (response.data.brand){
+                this.brand = response.data.brand
+            } else {
+                router.push({ name: "404" })
+            }
+        },
         async updateBrand(){
             this.$v.$touch()
 
@@ -45,7 +54,9 @@ export default {
         }
     },
     mounted(){
-        
+        if (!this.brand) {
+            this.getBrand()
+        }
     }
 }
 </script>

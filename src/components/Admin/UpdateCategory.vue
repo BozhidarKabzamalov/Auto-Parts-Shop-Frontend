@@ -1,7 +1,6 @@
 <template lang="html">
-    <div class="create-category">
+    <div class="create-category" v-if="category">
         <h1 class="column-title">Редактирай Категория</h1>
-        {{ category }}
         <div class="input-container">
             <input :class="{ 'validation-error': $v.category.name.$error }" type="text" v-model="category.name" placeholder="Име">
         </div>
@@ -34,6 +33,15 @@ export default {
         }
     },
     methods: {
+        async getCategory(){
+            let response = await axios.get("/category/" + this.categoryId)
+
+            if (response.data.category){
+                this.category = response.data.category
+            } else {
+                router.push({ name: "404" })
+            }
+        },
         async updateCategory(){
             this.$v.$touch()
             if (!this.$v.$invalid) {
@@ -53,6 +61,11 @@ export default {
         },
         setCategoryImage(event){
             this.category.image = event.target.files[0]
+        }
+    },
+    mounted(){
+        if (!this.category) {
+            this.getCategory()
         }
     }
 }

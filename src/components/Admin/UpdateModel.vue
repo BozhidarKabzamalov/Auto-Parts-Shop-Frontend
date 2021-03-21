@@ -1,5 +1,5 @@
 <template lang="html">
-    <div class="create-model">
+    <div class="create-model" v-if="model">
         <h1 class="column-title">Редактирай Модел</h1>
         <div class="input-container">
             <input :class="{ 'validation-error': $v.model.name.$error }" type="text" v-model="model.name" placeholder="Име">
@@ -56,6 +56,15 @@ export default {
         }
     },
     methods: {
+        async getModel(){
+            let response = await axios.get("/model/" + this.modelId)
+
+            if (response.data.model){
+                this.model = response.data.model
+            } else {
+                router.push({ name: "404" })
+            }
+        },
         async updateModel(){
             this.$v.$touch()
 
@@ -93,6 +102,9 @@ export default {
         }
     },
     mounted(){
+        if (!this.model) {
+            this.getModel()
+        }
         this.getBrands()
     }
 }

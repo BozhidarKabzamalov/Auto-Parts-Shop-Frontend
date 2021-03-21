@@ -7,8 +7,10 @@
         <div class="models">
             <div class="model" v-for="model in models">
                 <p>{{ model.name }}</p>
-                <div class="btn btn-danger" @click="deleteModel(model)">Delete</div>
-                <div class="btn btn-secondary" @click="goToUpdateModel(model)">Update</div>
+                <div class="buttons-container">
+                    <div class="btn btn-secondary" @click="goToUpdateModel(model)">Редактирай</div>
+                    <div class="btn btn-danger" @click="deleteModel(model)">Изтрий</div>
+                </div>
             </div>
         </div>
         <Pagination :currentPage="currentPage" :totalPages="totalPages" @setCurrentPage="setCurrentPage"></Pagination>
@@ -81,8 +83,14 @@ export default {
     padding: 20px 0;
     font-size: 15px;
 }
-.btn {
+.buttons-container {
+    display: flex;
     margin-left: auto;
+}
+.btn {
     width: 100px;
+}
+.btn:first-child {
+    margin-right: 10px;
 }
 </style>

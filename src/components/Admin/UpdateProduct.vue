@@ -1,5 +1,5 @@
 <template lang="html">
-    <div class="create-product">
+    <div class="create-product" v-if="product">
         <h1 class="column-title">Редактирай Продукт</h1>
         <div class="input-container">
             <input :class="{ 'validation-error': $v.product.name.$error }" type="text" v-model="product.name" placeholder="Име">
@@ -103,25 +103,34 @@ export default {
                 maxLength: maxLength(255)
             },
             image: {
-                //required
+                required
             },
             categoryId: {
                 required,
                 integer
             },
             brands: {
-                /*required,
+                required,
                 minLength: minLength(1),
-                maxLength: maxLength(99)*/
+                maxLength: maxLength(99)
             },
             models: {
-                /*required,
+                required,
                 minLength: minLength(1),
-                maxLength: maxLength(99)*/
+                maxLength: maxLength(99)
             },
         }
     },
     methods: {
+        async getProduct(){
+            let response = await axios.get("/product/" + this.productId)
+
+            if (response.data.product){
+                this.product = response.data.product
+            } else {
+                router.push({ name: "404" })
+            }
+        },
         async updateProduct(){
             this.$v.$touch()
 
@@ -222,8 +231,10 @@ export default {
         }
     },
     mounted(){
+        if (!this.product) {
+            this.getProduct()
+        }
         this.getCategories()
-        console.log(this.$route.params.product)
     }
 }
 </script>

@@ -10,8 +10,10 @@
                     <img class='product-image' :src="product.image" :alt="product.name">
                 </div>
                 <p>{{ product.name }}</p>
-                <div class="btn btn-danger" @click="deleteProduct(product)">Delete</div>
-                <div class="btn btn-secondary" @click="goToUpdateProduct(product)">Update</div>
+                <div class="buttons-container">
+                    <div class="btn btn-secondary" @click="goToUpdateProduct(product)">Редактирай</div>
+                    <div class="btn btn-danger" @click="deleteProduct(product)">Изтрий</div>
+                </div>
             </div>
         </div>
         <Pagination :currentPage="currentPage" :totalPages="totalPages" @setCurrentPage="setCurrentPage"></Pagination>
@@ -102,8 +104,14 @@ export default {
     max-height: 100%;
     max-width: 100%;
 }
-.btn {
+.buttons-container {
+    display: flex;
     margin-left: auto;
+}
+.btn {
     width: 100px;
+}
+.btn:first-child {
+    margin-right: 10px;
 }
 </style>

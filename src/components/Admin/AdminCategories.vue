@@ -10,8 +10,10 @@
                     <img class='category-image' :src="category.image" :alt="category.name">
                 </div>
                 <p>{{ category.name }}</p>
-                <div class="btn btn-danger" @click="deleteCategory(category)">Delete</div>
-                <div class="btn btn-secondary" @click="goToUpdateCategory(category)">Update</div>
+                <div class="buttons-container">
+                    <div class="btn btn-secondary" @click="goToUpdateCategory(category)">Редактирай</div>
+                    <div class="btn btn-danger" @click="deleteCategory(category)">Изтрий</div>
+                </div>
             </div>
         </div>
         <Pagination :currentPage="currentPage" :totalPages="totalPages" @setCurrentPage="setCurrentPage"></Pagination>
@@ -102,8 +104,14 @@ export default {
     max-height: 100%;
     max-width: 100%;
 }
-.btn {
+.buttons-container {
+    display: flex;
     margin-left: auto;
+}
+.btn {
     width: 100px;
+}
+.btn:first-child {
+    margin-right: 10px;
 }
 </style>
