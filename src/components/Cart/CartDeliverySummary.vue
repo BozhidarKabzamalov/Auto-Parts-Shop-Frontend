@@ -23,14 +23,12 @@ export default {
 
 <style lang="css" scoped>
 .delivery-summary {
-    min-height: calc(100vh - 90px);
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     border: 1px solid #dee2e6;
     padding: 20px;
-    margin-top: 20px;
 }
 .delivery-summary h1, h2, p {
     margin-bottom: 20px;

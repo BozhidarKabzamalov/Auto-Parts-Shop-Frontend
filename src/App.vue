@@ -1,8 +1,8 @@
 <template>
     <div id="app">
         <Header></Header>
-        <router-view/>
-        <!--<Footer></Footer>-->
+        <router-view class="min-height" />
+        <Footer></Footer>
     </div>
 </template>
 
@@ -37,6 +37,9 @@ body {
     font-family: 'Roboto', sans-serif;
     background-color: #ffffff;
     color: #333;
+}
+.min-height {
+    min-height: calc(100vh - 100px);
 }
 .flex {
     display: flex;

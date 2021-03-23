@@ -11,7 +11,6 @@ export default {
 
 <style lang="css" scoped>
 .not-found {
-    min-height: calc(100vh - 50px);
     min-width: 100vw;
     display: flex;
     justify-content: center;

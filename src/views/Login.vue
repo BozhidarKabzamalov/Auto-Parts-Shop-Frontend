@@ -44,7 +44,6 @@ export default {
 
 <style lang="css" scoped>
 .login {
-    min-height: calc(100vh - 51px);
     display: flex;
     justify-content: center;
     align-items: center;

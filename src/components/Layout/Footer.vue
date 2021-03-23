@@ -9,6 +9,6 @@
 <style scoped>
     .footer {
         background-color: #24292e;
-        height: 51px;
+        height: 50px;
     }
 </style>
