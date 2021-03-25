@@ -26,7 +26,7 @@ export default {
             this.$store.dispatch("addCartItem", this.product);
         },
         goToProductPage(){
-            router.push({ name: "specificProduct", params: { productName: this.product.name, productId: this.product.id, product: this.product }})
+            router.push({ name: "specificProduct", params: { productName: this.product.name, productId: this.product.id }})
         }
     },
     computed: {
@@ -34,7 +34,7 @@ export default {
             return this.product.discount !== 0
         },
         discountPrice(){
-            return this.product.price - ( this.product.price * ( this.product.discount / 100 ))
+            return (this.product.price - ( this.product.price * ( this.product.discount / 100 ))).toFixed(0)
         }
     }
 }

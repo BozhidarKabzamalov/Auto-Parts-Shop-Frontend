@@ -18,9 +18,19 @@
                     </div>
                     <div @click="addToCart" class="btn btn-primary">Добави в количката</div>
                 </div>
-                <p>{{ product.description }}</p>
-                <p>{{ product.manufacturer }}</p>
-                <p>{{ product.serialNumber }}</p>
+                <p class="product-description">{{ product.description }}</p>
+                <div class="details-table">
+                    <div class="column">
+                        <p>Сериен номер</p>
+                        <p>Категория</p>
+                        <p>Производител</p>
+                    </div>
+                    <div class="column">
+                        <p>{{ product.serialNumber }}</p>
+                        <p>{{ product.category.name }}</p>
+                        <p>{{ product.manufacturer }}</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -36,14 +46,14 @@ export default {
     },
     data(){
         return{
-            product: this.$route.params.product,
+            product: undefined,
             productId: this.$route.params.productId
         }
     },
     methods:{
         async getProduct(){
             let response = await axios.get("/product/" + this.productId)
-
+            console.log(response.data.product)
             if (response.data.product){
                 this.product = response.data.product
             } else {
@@ -59,13 +69,11 @@ export default {
             return this.product.discount !== 0
         },
         discountPrice(){
-            return this.product.price - ( this.product.price * ( this.product.discount / 100 ))
+            return (this.product.price - ( this.product.price * ( this.product.discount / 100 ))).toFixed(0)
         }
     },
     mounted(){
-        if (!this.product) {
-            this.getProduct()
-        }
+        this.getProduct()
     }
 }
 </script>
@@ -145,5 +153,20 @@ export default {
 }
 .btn {
     width: 250px;
+}
+.details-table {
+    display: flex;
+}
+.column {
+    flex: 1;
+}
+.column > p {
+    padding: 10px;
+}
+.column > p:nth-child(odd){
+    background-color: #ededed;
+}
+.product-description {
+    margin-bottom: 20px;
 }
 </style>

@@ -132,7 +132,7 @@ export default {
                 try {
                     let response = await axios.post('/createOrder', orderInformation)
                     this.$store.dispatch("clearCart")
-                    router.push({ name: 'deliverySummary', params: { orderId: response.data.order.id, orderTotalPrice: response.data.order.totalPrice } })
+                    router.push({ name: 'deliverySummary', params: { orderId: response.data.order.id, orderTotalPrice: (response.data.order.totalPrice).toFixed(0) } })
                 } catch (error) {
                     console.log(error)
                 }
