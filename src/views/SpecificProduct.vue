@@ -21,7 +21,7 @@
                 <p class="product-description">{{ product.description }}</p>
                 <div class="details-table">
                     <div class="column">
-                        <p>Сериен номер</p>
+                        <p>Сериен №</p>
                         <p>Категория</p>
                         <p>Производител</p>
                     </div>
@@ -156,6 +156,7 @@ export default {
 }
 .details-table {
     display: flex;
+    margin-bottom: 20px;
 }
 .column {
     flex: 1;
@@ -167,6 +168,26 @@ export default {
     background-color: #ededed;
 }
 .product-description {
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 20px;
     margin-bottom: 20px;
+}
+
+@media (max-width: 1080px) {
+    .specific-product-container {
+        flex-direction: column;
+    }
+    .image-column {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    .details-column {
+        padding-left: 0;
+    }
+    .add-to-cart {
+        flex-direction: column;
+    }
 }
 </style>
