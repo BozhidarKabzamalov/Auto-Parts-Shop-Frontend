@@ -36,6 +36,7 @@ export default {
         return {
             model: this.$route.query.model,
             categoryId: this.$route.query.categoryId,
+            searchQuery: this.$route.query.searchQuery,
             currentPage: 1,
             products: [],
             totalItems: null,
@@ -44,8 +45,10 @@ export default {
     },
     methods: {
         async getProducts(){
-            if (this.model === undefined && this.categoryId === undefined) {
+            if (this.model === undefined && this.categoryId === undefined && this.searchQuery === undefined) {
                 var response = await axios.get('/products?page=' + this.currentPage)
+            } else if (this.searchQuery !== undefined) {
+                var response = await axios.get('/productsBy/' + this.searchQuery + '?page=' + this.currentPage)
             } else if (this.categoryId !== undefined && this.model === undefined) {
                 var response = await axios.get('/products/' + this.categoryId + '?page=' + this.currentPage)
             } else {
@@ -61,6 +64,7 @@ export default {
     },
     watch: {
         $route (to, from){
+            this.searchQuery = this.$route.query.searchQuery
             this.categoryId = this.$route.query.model
             this.model = this.$route.query.categoryId
             this.getProducts()
