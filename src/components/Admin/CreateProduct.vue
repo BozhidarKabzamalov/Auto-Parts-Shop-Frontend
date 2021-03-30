@@ -189,7 +189,7 @@ export default {
         },
         async getModelsByName(){
             try {
-                let response = await axios.get('/models/' + this.modelSearch)
+                let response = await axios.get('/models?searchQuery=' + this.modelSearch)
 
                 this.models = response.data.models
             } catch (e) {
@@ -198,7 +198,7 @@ export default {
         },
         async getBrandsByName(){
             try {
-                let response = await axios.get('/brands/' + this.brandSearch)
+                let response = await axios.get('/brands?searchQuery=' + this.brandSearch)
 
                 this.brands = response.data.brands
             } catch (e) {

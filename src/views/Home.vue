@@ -45,15 +45,8 @@ export default {
     },
     methods: {
         async getProducts(){
-            if (this.model === undefined && this.categoryId === undefined && this.searchQuery === undefined) {
-                var response = await axios.get('/products?page=' + this.currentPage)
-            } else if (this.searchQuery !== undefined) {
-                var response = await axios.get('/productsBy/' + this.searchQuery + '?page=' + this.currentPage)
-            } else if (this.categoryId !== undefined && this.model === undefined) {
-                var response = await axios.get('/products/' + this.categoryId + '?page=' + this.currentPage)
-            } else {
-                var response = await axios.get('/products/' + this.model + '/' + this.categoryId + '?page=' + this.currentPage)
-            }
+            let response = await axios.get('/products?searchQuery=' + this.searchQuery + '&categoryId=' + this.categoryId + '&model=' + this.model + '&page=' + this.currentPage)
+
             this.products = response.data.products
             this.totalItems = response.data.totalItems
             this.totalPages = response.data.totalPages
