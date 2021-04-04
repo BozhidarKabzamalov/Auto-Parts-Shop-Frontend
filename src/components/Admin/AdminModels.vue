@@ -8,8 +8,8 @@
             <div class="model" v-for="model in models">
                 <p>{{ model.name }}</p>
                 <div class="buttons-container">
-                    <div class="btn btn-secondary" @click="goToUpdateModel(model)">Редактирай</div>
-                    <div class="btn btn-danger" @click="deleteModel(model)">Изтрий</div>
+                    <div class="btn btn-secondary" @click="goToUpdateModel(model)"><i class="far fa-edit"></i></div>
+                    <div class="btn btn-danger" @click="deleteModel(model)"><i class="far fa-trash-alt"></i></div>
                 </div>
             </div>
         </div>

@@ -11,8 +11,8 @@
                 </div>
                 <p>{{ category.name }}</p>
                 <div class="buttons-container">
-                    <div class="btn btn-secondary" @click="goToUpdateCategory(category)">Редактирай</div>
-                    <div class="btn btn-danger" @click="deleteCategory(category)">Изтрий</div>
+                    <div class="btn btn-secondary" @click="goToUpdateCategory(category)"><i class="far fa-edit"></i></div>
+                    <div class="btn btn-danger" @click="deleteCategory(category)"><i class="far fa-trash-alt"></i></div>
                 </div>
             </div>
         </div>

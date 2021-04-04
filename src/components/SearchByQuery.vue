@@ -28,6 +28,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-right: 30px;
 }
 .search-bar {
     border: 1px solid #ffffff;
@@ -42,7 +43,8 @@ export default {
 }
 .search-bar {
     height: 35px;
-    width: 210px;
+    width: 100%;
+    max-width: 210px;
 }
 .search-icon-container {
     display: flex;

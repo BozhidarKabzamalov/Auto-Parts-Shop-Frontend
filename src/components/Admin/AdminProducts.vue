@@ -11,8 +11,8 @@
                 </div>
                 <p>{{ product.name }}</p>
                 <div class="buttons-container">
-                    <div class="btn btn-secondary" @click="goToUpdateProduct(product)">Редактирай</div>
-                    <div class="btn btn-danger" @click="deleteProduct(product)">Изтрий</div>
+                    <div class="btn btn-secondary" @click="goToUpdateProduct(product)"><i class="far fa-edit"></i></div>
+                    <div class="btn btn-danger" @click="deleteProduct(product)"><i class="far fa-trash-alt"></i></div>
                 </div>
             </div>
         </div>

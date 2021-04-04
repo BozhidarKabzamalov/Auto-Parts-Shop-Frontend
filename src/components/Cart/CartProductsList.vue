@@ -135,9 +135,6 @@ export default {
     .product-information {
         display: none;
     }
-    .cart-products-title {
-        margin-bottom: 0;
-    }
     .column:last-child {
         width: 100%;
     }

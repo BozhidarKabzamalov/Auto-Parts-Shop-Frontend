@@ -41,6 +41,7 @@ export default {
     }
     .nav-ul {
         display: flex;
+        flex-wrap: wrap;
     }
     .nav-ul li {
         padding: 21px 30px 21px 0;
@@ -51,5 +52,11 @@ export default {
     }
     .nav-ul li:last-child {
         margin-left: auto;
+    }
+
+    @media (max-width: 1000px) {
+        .nav-ul {
+            flex-direction: column;
+        }
     }
 </style>

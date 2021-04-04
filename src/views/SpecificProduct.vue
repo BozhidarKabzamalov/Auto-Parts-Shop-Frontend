@@ -20,15 +20,29 @@
                 </div>
                 <p class="product-description">{{ product.description }}</p>
                 <div class="details-table">
-                    <div class="column">
-                        <p>Сериен №</p>
-                        <p>Категория</p>
-                        <p>Производител</p>
+                    <div class="row">
+                        <div class="column">
+                            <p>Сериен №</p>
+                        </div>
+                        <div class="column">
+                            <p>{{ product.serialNumber }}</p>
+                        </div>
                     </div>
-                    <div class="column">
-                        <p>{{ product.serialNumber }}</p>
-                        <p>{{ product.category.name }}</p>
-                        <p>{{ product.manufacturer }}</p>
+                    <div class="row">
+                        <div class="column">
+                            <p>Категория</p>
+                        </div>
+                        <div class="column">
+                            <p>{{ product.category.name }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="column">
+                            <p>Производител</p>
+                        </div>
+                        <div class="column">
+                            <p>{{ product.manufacturer }}</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -53,7 +67,7 @@ export default {
     methods:{
         async getProduct(){
             let response = await axios.get("/product/" + this.productId)
-            console.log(response.data.product)
+
             if (response.data.product){
                 this.product = response.data.product
             } else {
@@ -155,16 +169,22 @@ export default {
     width: 250px;
 }
 .details-table {
-    display: flex;
     margin-bottom: 20px;
+}
+.row {
+    display: flex;
 }
 .column {
     flex: 1;
 }
+.column:first-child {
+    flex: 200px 0 0;
+}
 .column > p {
+    word-wrap: break-word;
     padding: 10px;
 }
-.column > p:nth-child(odd){
+.row:nth-child(odd){
     background-color: #ededed;
 }
 .product-description {
@@ -188,6 +208,18 @@ export default {
     }
     .add-to-cart {
         flex-direction: column;
+    }
+    .row {
+        flex-direction: column;
+    }
+    .column:first-child {
+        flex: 1;
+    }
+    .column:nth-child(odd){
+        background-color: #ededed;
+    }
+    .row:nth-child(odd){
+        background-color: transparent;
     }
 }
 </style>

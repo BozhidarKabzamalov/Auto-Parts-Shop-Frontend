@@ -66,7 +66,7 @@ export default {
         },
         async getModels(){
             try {
-                let response = await axios.get('/models/' + this.selectedBrand.id + '/' + this.selectedYear)
+                let response = await axios.get('/models?brandId=' + this.selectedBrand.id + '&year=' + this.selectedYear)
 
                 this.models = response.data.models
             } catch (e) {

@@ -69,6 +69,7 @@ export default {
     margin-right: 15px;
 }
 .product-manufacturer, .product-serial-number {
+    word-wrap: break-word;
     width: 120px;
     margin-right: 15px;
 }
@@ -91,6 +92,7 @@ export default {
     font-weight: 400;
 }
 .discount {
+    font-size: 13px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -133,6 +135,9 @@ export default {
     }
     .product-price {
         text-align: center;
+    }
+    .discounted-price {
+        justify-content: center;
     }
 }
 </style>
