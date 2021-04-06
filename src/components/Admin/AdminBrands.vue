@@ -8,8 +8,12 @@
             <div class="brand" v-for="brand in brands">
                 <p>{{ brand.name }}</p>
                 <div class="buttons-container">
-                    <div class="btn btn-secondary" @click="goToUpdateBrand(brand)"><i class="far fa-edit"></i></div>
-                    <div class="btn btn-danger" @click="deleteBrand(brand)"><i class="far fa-trash-alt"></i></div>
+                    <div class="btn btn-secondary" @click="goToUpdateBrand(brand)">
+                        <i class="far fa-edit"></i>
+                    </div>
+                    <div class="btn btn-danger" @click="deleteBrand(brand)">
+                        <i class="far fa-trash-alt"></i>
+                    </div>
                 </div>
             </div>
             <Pagination :currentPage="currentPage" :totalPages="totalPages" @setCurrentPage="setCurrentPage"></Pagination>

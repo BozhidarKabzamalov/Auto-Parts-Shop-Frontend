@@ -1,11 +1,13 @@
 <template lang="html">
     <div class="delivery-summary">
-        <h1>Вашата поръчка беше успешно приета</h1>
-        <h2>Очаквайте наш служител да се свърже с Вас</h2>
-        <p>Поръчка №: {{ orderId }}</p>
-        <p>Крайна цена: {{ orderTotalPrice }} лв</p>
-        <div class="circle">
-            <i class="fas fa-thumbs-up"></i>
+        <div class="delivery-information">
+            <h1>Вашата поръчка беше успешно приета</h1>
+            <h2>Очаквайте наш служител да се свърже с Вас</h2>
+            <p>Поръчка №: {{ orderId }}</p>
+            <p>Крайна цена: {{ orderTotalPrice }} лв</p>
+            <div class="circle">
+                <i class="fas fa-thumbs-up"></i>
+            </div>
         </div>
     </div>
 </template>
@@ -26,9 +28,14 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.delivery-information {
+    display: flex;
     flex-direction: column;
+    align-items: center;
     border: 1px solid #dee2e6;
-    padding: 20px;
+    padding: 50px;
+    margin-top: 50px;
 }
 .delivery-summary h1, h2, p {
     margin-bottom: 20px;

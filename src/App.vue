@@ -12,7 +12,7 @@
 
     export default {
         metaInfo: {
-          titleTemplate: '%sНели'
+          titleTemplate: '%sPinkeyd'
         },
         components: {
             Header,
