@@ -12,6 +12,9 @@ import AdminHeader from "../components/Admin/AdminHeader"
 export default {
     components: {
         AdminHeader
+    },
+    metaInfo: {
+      title: 'Админ | '
     }
 }
 </script>

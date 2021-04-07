@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import About from '../views/About.vue'
+import Delivery from '../views/Delivery.vue'
+import Tos from '../views/Tos.vue'
 import SpecificProduct from '../views/SpecificProduct.vue'
 import Categories from '../views/Categories.vue'
 import Cart from '../views/Cart.vue'
@@ -171,6 +173,16 @@ const routes = [
         path: "/about",
         name: "about",
         component: About
+    },
+    {
+        path: "/delivery",
+        name: "delivery",
+        component: Delivery
+    },
+    {
+        path: "/tos",
+        name: "tos",
+        component: Tos
     },
     {
         path: "/404",

@@ -133,6 +133,7 @@ export default {
     margin-right: 5px;
 }
 .discount {
+    font-size: 13px;
     display: flex;
     justify-content: center;
     align-items: center;

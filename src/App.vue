@@ -39,7 +39,7 @@ body {
     color: #333;
 }
 .min-height {
-    min-height: calc(100vh - 110px);
+    min-height: calc(100vh - 120px);
 }
 .flex {
     display: flex;
