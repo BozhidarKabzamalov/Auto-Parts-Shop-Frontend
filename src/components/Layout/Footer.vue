@@ -14,7 +14,7 @@
 
 <style scoped>
     .footer {
-        background-color: #24292e;
+        background: linear-gradient(-45deg, #57cfb0, #2ab5d3);
     }
     .nav-ul {
         display: flex;
@@ -24,7 +24,13 @@
         padding: 21px 30px 21px 0;
         color: #ffffff;
         cursor: pointer;
-        font-weight: 500;
+        font-weight: 700;
         font-size: 15px;
+    }
+
+    @media (max-width: 1000px) {
+        .nav-ul {
+            flex-direction: column;
+        }
     }
 </style>

@@ -1,18 +1,16 @@
 <template>
     <div class="header">
         <div class='wrapper'>
-            <ul class='nav-ul'>
-                <router-link to="/" tag='li'>Начало</router-link>
-                <router-link to="/categories" tag='li'>Категории</router-link>
-                <router-link v-if="authenticated" to="/admin" tag='li'>Admin</router-link>
-                <SearchByQuery></SearchByQuery>
-                <!--<router-link to="/cart" tag='li'>Контакти</router-link>
-                <router-link to="/cart" tag='li'>За нас</router-link>
-                <router-link to="/cart" tag='li'>Доставка</router-link>
-                <router-link to="/cart" tag='li'>Общи условия</router-link>
-                <router-link to="/cart" tag='li'>Поверителност</router-link>-->
-                <router-link to="/cart" tag='li'>Количка ({{ cartItemsCount }})</router-link>
-            </ul>
+            <div class='navigation'>
+                <div class="hamburger-menu" @click="hamburgerToggle = !hamburgerToggle"><i class="fas fa-bars"></i></div>
+                <div class="navigation-elements">
+                    <router-link to="/" tag='div'>Начало</router-link>
+                    <router-link to="/categories" tag='div'>Категории</router-link>
+                    <router-link v-if="authenticated" to="/admin" tag='div'>Admin</router-link>
+                    <SearchByQuery></SearchByQuery>
+                    <router-link to="/cart" tag='div'>Количка ({{ cartItemsCount }})</router-link>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -23,6 +21,11 @@ import SearchByQuery from "../SearchByQuery"
 export default {
     components: {
         SearchByQuery
+    },
+    data(){
+        return {
+            hamburgerToggle: false
+        }
     },
     computed: {
         cartItemsCount(){
@@ -38,25 +41,51 @@ export default {
 <style scoped>
     .header {
         background-color: #24292e;
+        background-color: #c23131;
+        background: linear-gradient(-45deg, #57cfb0, #2ab5d3);
     }
-    .nav-ul {
+    .navigation {
         display: flex;
         flex-wrap: wrap;
     }
-    .nav-ul li {
+    .navigation-elements {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .navigation-elements div {
         padding: 21px 30px 21px 0;
         color: #ffffff;
         cursor: pointer;
-        font-weight: 500;
+        font-weight: 700;
         font-size: 15px;
     }
-    .nav-ul li:last-child {
+    .navigation-elements div:last-child {
         margin-left: auto;
+    }
+    .hamburger-menu {
+        padding: 18px 30px 18px 0;
+        color: #ffffff;
+        cursor: pointer;
+        font-size: 20px;
+        display: none;
     }
 
     @media (max-width: 1000px) {
-        .nav-ul {
+        .hamburger-menu {
+            display: block;
+        }
+        .navigation {
             flex-direction: column;
+        }
+        .navigation-elements div{
+            display: none;
+        }
+        .search-by-query {
+            justify-content: flex-start;
+            display: none;
+        }
+        .navigation-elements div:last-child {
+            margin-left: 0;
         }
     }
 </style>

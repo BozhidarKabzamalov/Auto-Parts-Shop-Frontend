@@ -45,6 +45,7 @@ section {
     margin-bottom: 20px;
 }
 section > p {
+    line-height: 25px;
     margin-bottom: 20px;
 }
 section > p:last-child {
