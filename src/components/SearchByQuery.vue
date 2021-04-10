@@ -29,8 +29,11 @@ export default {
     justify-content: center;
     align-items: center;
     margin-right: 30px;
+    width: 240px;
 }
 .search-bar {
+    height: 35px;
+    width: 100%;
     border: 1px solid #ffffff;
     padding: 15px;
     background-color: #ffffff;
@@ -40,11 +43,6 @@ export default {
 ::placeholder {
     color: #757575;
     opacity: 1;
-}
-.search-bar {
-    height: 35px;
-    width: 100%;
-    max-width: 210px;
 }
 .search-icon-container {
     display: flex;

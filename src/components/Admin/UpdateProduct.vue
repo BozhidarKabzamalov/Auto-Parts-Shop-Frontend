@@ -124,7 +124,7 @@ export default {
     methods: {
         async getProduct(){
             let response = await axios.get("/product/" + this.productId)
-
+            console.log(response.data.product)
             if (response.data.product){
                 this.product = response.data.product
             } else {
@@ -231,9 +231,7 @@ export default {
         }
     },
     mounted(){
-        if (!this.product) {
-            this.getProduct()
-        }
+        this.getProduct()
         this.getCategories()
     }
 }

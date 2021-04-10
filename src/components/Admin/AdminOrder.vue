@@ -43,7 +43,12 @@
         <div>
             <p>Продукти</p>
             <div class="products">
-                <p class="product" v-for="product in order.products">{{ product.Order_Product.quantity}} - {{ product.name }} - {{ product.serialNumber }} - {{ product.price }} лв</p>
+                <div class="product" v-for="product in order.products" @click="goToProductPage(product)">
+                    <p>Количество: {{ product.Order_Product.quantity}}</p>
+                    <p>Име: {{ product.name }}</p>
+                    <p>Сериен №: {{ product.serialNumber }}</p>
+                    <p>Цена: {{ product.price }} лв</p>
+                </div>
             </div>
         </div>
 
@@ -51,7 +56,8 @@
 </template>
 
 <script>
-import moment from 'moment'
+import moment from "moment"
+import router from "../../router"
 
 export default {
     data(){
@@ -61,6 +67,9 @@ export default {
         }
     },
     methods: {
+        goToProductPage(product){
+            router.push({ name: "specificProduct", params: { productName: product.name, productId: product.id }})
+        },
         timestampToDate(timestamp){
             return moment(timestamp).format('L');
         }
@@ -76,5 +85,8 @@ export default {
 .admin-order > div > p:first-child {
     font-weight: 500;
     margin-bottom: 5px;
+}
+.product {
+    margin-bottom: 20px;
 }
 </style>

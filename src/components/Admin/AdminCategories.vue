@@ -95,7 +95,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100px;
+    flex: 100px 0 0;
     height: 100px;
     margin-right: 15px;
 }
@@ -113,5 +113,19 @@ export default {
 }
 .btn:first-child {
     margin-right: 10px;
+}
+
+@media (max-width: 860px) {
+    .category-image-container {
+        margin-right: 0px;
+        margin-bottom: 20px;
+    }
+    .category {
+        flex-direction: column;
+    }
+    .buttons-container {
+        margin-top: 20px;
+        margin-left: 0px;
+    }
 }
 </style>

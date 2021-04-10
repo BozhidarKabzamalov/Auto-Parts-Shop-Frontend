@@ -7,14 +7,14 @@
         <div class="input-container">
             <select :class="{ 'validation-error': $v.model.manufacturedFrom.$error }" v-model="model.manufacturedFrom">
                 <option disabled value="">Произвеждан от</option>
-                <option v-for='year in years'>{{ year }}</option>
+                <option v-for='year in manufacturedFromYears'>{{ year }}</option>
             </select>
         </div>
-        <div class="input-container">
+        <div class="input-container" v-if="model.manufacturedFrom">
             <select v-model="model.manufacturedTo">
                 <option disabled value="">Произвеждан до</option>
                 <option :value="null">Още в производство</option>
-                <option v-for='year in years'>{{ year }}</option>
+                <option v-for='year in manufacturedToYears'>{{ year }}</option>
             </select>
         </div>
         <div class="input-container">
@@ -87,9 +87,20 @@ export default {
         }
     },
     computed: {
-        years(){
-            let yearsArray = [];
+        manufacturedFromYears(){
+            let yearsArray = []
             let startYear = 1950
+            let currentYear = new Date().getFullYear()
+
+            while ( startYear <= currentYear ) {
+                yearsArray.unshift(startYear++);
+            }
+
+            return yearsArray;
+        },
+        manufacturedToYears(){
+            let yearsArray = []
+            let startYear = this.model.manufacturedFrom
             let currentYear = new Date().getFullYear()
 
             while ( startYear <= currentYear ) {
@@ -108,5 +119,6 @@ export default {
 <style lang="css" scoped>
 .btn {
     width: 250px;
+    margin-bottom: 20px;
 }
 </style>

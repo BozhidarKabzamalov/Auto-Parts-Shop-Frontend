@@ -120,12 +120,10 @@ export default {
                 integer
             },
             brands: {
-                required,
                 minLength: minLength(1),
                 maxLength: maxLength(99)
             },
             models: {
-                required,
                 minLength: minLength(1),
                 maxLength: maxLength(99)
             },
@@ -272,5 +270,6 @@ export default {
 }
 .btn {
     width: 250px;
+    margin-bottom: 20px;
 }
 </style>

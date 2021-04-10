@@ -3,7 +3,7 @@
         <div class='wrapper'>
             <div class='navigation'>
                 <div class="hamburger-menu" @click="hamburgerToggle = !hamburgerToggle"><i class="fas fa-bars"></i></div>
-                <div class="navigation-elements">
+                <div class="navigation-elements" :class="{ visible: hamburgerToggle }">
                     <router-link to="/" tag='div'>Начало</router-link>
                     <router-link to="/categories" tag='div'>Категории</router-link>
                     <router-link v-if="authenticated" to="/admin" tag='div'>Admin</router-link>
@@ -34,6 +34,11 @@ export default {
         authenticated(){
             return this.$store.getters.authenticated
         }
+    },
+    watch: {
+        $route (to, from){
+            this.hamburgerToggle = false
+        }
     }
 }
 </script>
@@ -43,12 +48,14 @@ export default {
         background-color: #24292e;
         background-color: #c23131;
         background: linear-gradient(-45deg, #57cfb0, #2ab5d3);
+        user-select: none;
     }
     .navigation {
         display: flex;
         flex-wrap: wrap;
     }
     .navigation-elements {
+        flex: 1;
         display: flex;
         flex-wrap: wrap;
     }
@@ -69,6 +76,9 @@ export default {
         font-size: 20px;
         display: none;
     }
+    .visible {
+        display: flex !important;
+    }
 
     @media (max-width: 1000px) {
         .hamburger-menu {
@@ -77,12 +87,12 @@ export default {
         .navigation {
             flex-direction: column;
         }
-        .navigation-elements div{
+        .navigation-elements {
+            flex-direction: column;
             display: none;
         }
         .search-by-query {
             justify-content: flex-start;
-            display: none;
         }
         .navigation-elements div:last-child {
             margin-left: 0;

@@ -114,4 +114,18 @@ export default {
 .btn:first-child {
     margin-right: 10px;
 }
+
+@media (max-width: 860px) {
+    .product-image-container {
+        margin-right: 0px;
+        margin-bottom: 20px;
+    }
+    .product {
+        flex-direction: column;
+    }
+    .buttons-container {
+        margin-top: 20px;
+        margin-left: 0px;
+    }
+}
 </style>

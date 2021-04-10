@@ -97,4 +97,14 @@ export default {
 .btn:first-child {
     margin-right: 10px;
 }
+
+@media (max-width: 860px) {
+    .brand {
+        flex-direction: column;
+    }
+    .buttons-container {
+        margin-top: 20px;
+        margin-left: 0px;
+    }
+}
 </style>
