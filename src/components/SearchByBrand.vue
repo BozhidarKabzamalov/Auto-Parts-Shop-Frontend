@@ -115,6 +115,7 @@ export default {
 <style lang="css" scoped>
 .search-by-brand {
     width: 250px;
+    margin-bottom: 20px;
 }
 .search-body {
     display: flex;

@@ -56,6 +56,7 @@
 </template>
 
 <script>
+import axios from "axios"
 import moment from "moment"
 import router from "../../router"
 
@@ -67,11 +68,21 @@ export default {
         }
     },
     methods: {
+        async getOrder(){
+            let response = await axios.get("/order/" + this.orderId)
+
+            this.order = response.data.order
+        },
         goToProductPage(product){
             router.push({ name: "specificProduct", params: { productName: product.name, productId: product.id }})
         },
         timestampToDate(timestamp){
             return moment(timestamp).format('L');
+        }
+    },
+    mounted(){
+        if (!this.order) {
+            this.getOrder()
         }
     }
 }
