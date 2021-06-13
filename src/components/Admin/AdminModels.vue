@@ -66,6 +66,11 @@ export default {
             router.push({ name: "updateModel", params: { modelId: model.id, model: model } })
         }
     },
+    watch: {
+        currentPage(){
+            this.getModels()
+        }
+    },
     mounted(){
         this.getModels()
     }

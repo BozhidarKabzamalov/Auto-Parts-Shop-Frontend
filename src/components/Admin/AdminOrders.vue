@@ -63,6 +63,11 @@ export default {
             router.push({ name: "adminOrder", params: { orderId: order.id, order: order }})
         }
     },
+    watch: {
+        currentPage(){
+            this.getOrders()
+        }
+    },
     mounted(){
         this.getOrders()
     }

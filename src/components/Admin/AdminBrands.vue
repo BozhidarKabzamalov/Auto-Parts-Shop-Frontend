@@ -70,6 +70,11 @@ export default {
             router.push({ name: "updateBrand", params: { brandId: brand.id, brand: brand } })
         }
     },
+    watch: {
+        currentPage(){
+            this.getBrands()
+        }
+    },
     mounted(){
         this.getBrands()
     }

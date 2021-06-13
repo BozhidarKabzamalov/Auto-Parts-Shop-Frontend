@@ -50,6 +50,11 @@ export default {
             router.push({ name: 'home', query: { brand: this.brand, model: this.model, categoryId: category.id } })
         }
     },
+    watch: {
+        currentPage(){
+            this.getCategories()
+        }
+    },
     mounted(){
         this.getCategories()
     }
