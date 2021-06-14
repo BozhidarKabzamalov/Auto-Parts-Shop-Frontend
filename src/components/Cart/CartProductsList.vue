@@ -111,6 +111,7 @@ export default {
 }
 .btn {
     height: 60px;
+    margin-bottom: 20px;
 }
 
 @media (max-width: 1450px) {
