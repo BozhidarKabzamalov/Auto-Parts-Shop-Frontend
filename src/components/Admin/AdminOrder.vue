@@ -47,7 +47,13 @@
                     <p>Количество: {{ product.Order_Product.quantity}}</p>
                     <p>Име: {{ product.name }}</p>
                     <p>Сериен №: {{ product.serialNumber }}</p>
-                    <p>Цена: {{ product.price }} лв</p>
+                    <div class="product-price">
+                        <div class="product-price-discount">
+                            <p class="price" :class="{ discounted: discounted(product) }">{{ product.price }} лв</p>
+                            <p class="discount" v-if="discounted(product)">-{{ product.discount }}%</p>
+                        </div>
+                        <p class="discounted-price" v-if="discounted(product)">{{ discountPrice(product) }} лв</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -78,6 +84,12 @@ export default {
         },
         timestampToDate(timestamp){
             return moment(timestamp).format('L');
+        },
+        discounted(product){
+            return product.discount !== 0
+        },
+        discountPrice(product){
+            return (product.price - ( product.price * ( product.discount / 100 ))).toFixed(2)
         }
     },
     mounted(){
@@ -99,5 +111,39 @@ export default {
 }
 .product {
     margin-bottom: 20px;
+}
+.product > p {
+    margin-bottom: 5px;
+}
+.product-price-discount {
+    display: flex;
+    margin-bottom: 5px;
+}
+.price {
+    font-weight: 700;
+}
+.discounted {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: line-through;
+    margin-right: 5px;
+    font-weight: 400;
+}
+.discount {
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px 5px;
+    font-weight: 500;
+    background-color: #f4770b;
+    border-radius: 5px;
+    color: #ffffff;
+}
+.discounted-price {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
 }
 </style>

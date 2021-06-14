@@ -101,7 +101,7 @@ export default {
 .category-name {
     font-size: 14px;
     text-align: center;
-    word-break: break-all;
+    word-break: break-word;
     margin: 20px 0 0 0;
 }
 </style>
