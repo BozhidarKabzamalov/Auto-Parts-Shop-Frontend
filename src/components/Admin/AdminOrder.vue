@@ -12,7 +12,7 @@
             <p>Телефон</p>
             <p>{{ order.phoneNumber }}</p>
         </div>
-        <div>
+        <div v-if="order.email">
             <p>Имeйл</p>
             <p>{{ order.email }}</p>
         </div>
@@ -28,7 +28,7 @@
             <p>Адрес</p>
             <p>{{ order.streetAddress }}</p>
         </div>
-        <div>
+        <div v-if="order.extraNotes">
             <p>Допълнителна информация</p>
             <p>{{ order.extraNotes }}</p>
         </div>
