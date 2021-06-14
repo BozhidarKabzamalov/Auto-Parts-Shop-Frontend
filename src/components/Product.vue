@@ -34,7 +34,7 @@ export default {
             return this.product.discount !== 0
         },
         discountPrice(){
-            return (this.product.price - ( this.product.price * ( this.product.discount / 100 ))).toFixed(0)
+            return (this.product.price - ( this.product.price * ( this.product.discount / 100 ))).toFixed(2)
         }
     }
 }
@@ -74,7 +74,7 @@ export default {
     margin-right: 15px;
 }
 .product-price {
-    width: 100px;
+    width: 120px;
 }
 .product-price-discount {
     display: flex;

@@ -83,7 +83,7 @@ export default {
             return this.product.discount !== 0
         },
         discountPrice(){
-            return (this.product.price - ( this.product.price * ( this.product.discount / 100 ))).toFixed(0)
+            return (this.product.price - ( this.product.price * ( this.product.discount / 100 ))).toFixed(2)
         }
     },
     mounted(){

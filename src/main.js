@@ -4,7 +4,8 @@ import router from './router'
 import store from './store/store'
 import axios from 'axios'
 
-axios.defaults.baseURL = "https://www.api.pinkeyd.com/"
+//axios.defaults.baseURL = "https://www.api.pinkeyd.com/"
+axios.defaults.baseURL = "http://localhost:3000/"
 
 import Vuelidate from 'vuelidate'
 Vue.use(Vuelidate)

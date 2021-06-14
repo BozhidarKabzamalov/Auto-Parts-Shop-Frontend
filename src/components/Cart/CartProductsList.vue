@@ -56,7 +56,7 @@ export default {
             return this.$store.getters.cartItemCount
         },
         cartTotalPrice(){
-            return (this.$store.getters.cartTotalPrice).toFixed(0)
+            return (this.$store.getters.cartTotalPrice).toFixed(2)
         }
     }
 }
@@ -107,7 +107,7 @@ export default {
     margin-right: 10px;
 }
 .product-price {
-    width: 100px;
+    width: 120px;
 }
 .btn {
     height: 60px;

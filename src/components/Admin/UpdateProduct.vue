@@ -81,12 +81,12 @@ export default {
             description: {
                 required,
                 minLength: minLength(1),
-                maxLength: maxLength(255)
+                maxLength: maxLength(65000)
             },
             price: {
                 required,
-                minLength: minLength(1),
-                maxLength: maxLength(255)
+                minLength: minValue(1),
+                maxLength: maxValue(99999)
             },
             discount: {
                 minLength: minValue(0),
@@ -245,7 +245,7 @@ export default {
     display: flex;
     flex-wrap: wrap;
     background-color: #f1f1f1;
-    padding: 15px;
+    padding: 10px;
     position: absolute;
     top: 100%;
     z-index: 1;
@@ -254,7 +254,7 @@ export default {
     border: 1px solid black;
     padding: 5px;
     font-size: 14px;
-    margin-right: 10px;
+    margin: 5px;
     border-radius: 5px;
     cursor: pointer;
 }
